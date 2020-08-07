@@ -20,7 +20,7 @@ You can install the development version of d.inspectEHR from
 [GitHub](https://www.github.com/DocEd/dinspectEHR) with:
 
 ``` r
-remotes::install_github("DocEd/dinspectEHR")
+remotes::install_github("DocEd/d.inspectEHR")
 ```
 
 ## Running the Report

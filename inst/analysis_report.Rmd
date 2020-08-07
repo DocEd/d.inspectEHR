@@ -61,6 +61,7 @@ library(ggplot2)
 library(dplyr)
 library(gt)
 library(patchwork)
+library(markovchain)
 
 if (params$driver == "PostgreSQL") {
   this_drv <- RPostgres::Postgres

@@ -30,7 +30,8 @@ Imports:
     DBI,
     janitor,
     patchwork,
-    gt
+    gt,
+    markovchain
 Suggests: 
     testthat,
     RPostgres,

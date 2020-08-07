@@ -1,4 +1,4 @@
 library(testthat)
-library(dinspectEHR)
+library(d.inspectEHR)
 
-test_check("dinspectEHR")
+test_check("d.inspectEHR")
