@@ -1,0 +1,64 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# d.inspectEHR
+
+<!-- badges: start -->
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+<!-- badges: end -->
+
+The goal of d.inspectEHR is to provide an early phase light touch quality evaluation for the DECOVID project.
+Prior to running these reports, sites *must* apply the DECOVID ddls and *should* try to run ACHILLES against their OMOP database.
+
+## Installation
+
+You can install the development version of d.inspectEHR from [GitHub](https://www.github.com/DocEd/dinspectEHR) with:
+
+``` r
+remotes::install_github("DocEd/dinspectEHR")
+```
+
+## Running the Report
+
+The report can be run by loading the package and running the following code.
+
+```r
+library(d.inspectEHR)
+render_report(output = "DECOVID_report.html")
+```
+
+This will prompt a shiny interface to launch for you to enter your database connection details.
+You can also supply these directly:
+
+```r
+library(d.inspectEHR)
+
+render_report(
+  output = "DECOVID_report.html",
+  prams = list(
+    driver = "PostgreSQL",
+    host = "localhost",
+    port = 5432,
+    dbname = "omop",
+    schema = "public",
+    user = "w.flemming",
+    password = "chromatin",
+    local_hospital = "St. Elsewhere"
+    )
+  )
+```
+
+Grab a coffee and enjoy.
+

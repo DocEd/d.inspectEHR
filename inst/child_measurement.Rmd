@@ -1,0 +1,138 @@
+```{r}
+current_concept <- {{x}}
+current_name <- meas_dq$long_name[meas_dq$concept_id == current_concept]
+target_col <- meas_dq$target_column[meas_dq$concept_id == current_concept]
+
+curr_title <- stringr::str_sub(current_name, 1, 30)
+if (nchar(curr_title) >= 30) {
+  curr_title <- paste0(curr_title, "...")
+}
+```
+
+### `r paste0(current_concept, ": ", curr_title)`
+
+```{r}
+## Collect Just the working data we need
+working <- tbl(ctn, in_schema(schema, "measurement")) %>%
+  filter(measurement_concept_id %in% !! current_concept) %>%
+  collect() %>%
+  mutate(across(where(is.integer64), as.integer))
+
+working_unit <- meas_dict %>%
+  filter(concept_id %in% unique(working$unit_concept_id))
+
+single_units <- nrow(working_unit) == 1
+label_units <- working_unit[1,"concept_name",drop = TRUE]
+measure_n <- nrow(working)
+```
+
+Concept is contributed in only 1 type of unit: `r single_units`.
+
+Primary unit in use is: `r label_units`.
+
+```{r}
+working <- left_join(
+  working,
+  st[["visit_occurrence"]] %>%
+      select(visit_occurrence_id, visit_start_datetime, visit_end_datetime),
+      select(
+        measurement_id,
+        measurement_datetime,
+        value_as_number,
+        value_as_concept_id,
+        visit_occurrence_id),
+    by = "visit_occurrence_id")
+```
+
+```{r}
+# Boundaries
+boundaries <- working %>%
+  summarise(
+    before = sum(measurement_datetime < visit_start_datetime, na.rm = TRUE),
+    after = sum(measurement_datetime > visit_end_datetime, na.rm = TRUE)
+  ) %>%
+  tidyr::pivot_longer(everything(), names_to = "condition", values_to = "count")
+
+# Duplications
+dup <- working %>%
+  select(.data$person_id, .data$measurement_datetime, .data[[target_col]]) %>%
+  janitor::get_dupes(everything()) %>%
+  tally(name = "count") %>%
+  tibble::add_column(condition = "duplications", .before = TRUE)
+
+miss <- tibble::tribble(
+  ~condition, ~count,
+  "no visit", sum(is.na(working$visit_occurrence_id))
+)
+
+bind_rows(boundaries, dup, miss) %>%
+  mutate(
+    total = measure_n,
+    `%` = round((count/total)*100, 0),
+    tolerance = c(1, 1, 1, 100)
+  ) %>%
+  gt() %>%
+  tab_style(
+    style = cell_fill(color = "red1", alpha = 0.5),
+    locations = cells_body(
+      rows = `%` > tolerance)
+  ) %>%
+  tab_options(table.width = pct(100))
+```
+
+
+```{r}
+# value distribution
+if (target_col == "value_as_number") {
+  val_dist <- working %>%
+    select(value_as_number) %>%
+    ggplot(aes(x = value_as_number)) +
+    geom_density() +
+    theme_classic() +
+    labs(x = label_units)
+} else {
+  opt <- dq_ans[dq_ans$concept_id == current_concept, c("option_concept_id", "option_name")]
+  
+  val_dist <- working %>%
+    select(value_as_concept_id) %>%
+    group_by(value_as_concept_id) %>%
+    tally() %>%
+    mutate(value_as_concept_id = factor(
+      value_as_concept_id,
+      levels = opt$option_concept_id,
+      labels = opt$option_name
+    )) %>%
+    ggplot(aes(
+      x = value_as_concept_id)) +
+    geom_point(aes(y = n)) +
+    geom_segment(aes(
+      y = 0,
+      yend = n,
+      xend = as.factor(value_as_concept_id))) +
+    theme_classic() +
+    labs(y = "number of respones", x = "categories") +
+    theme(axis.title.y = element_blank()) +
+    coord_flip()
+}
+
+# timing distribution
+timing_dist <- working %>%
+  select(measurement_datetime) %>%
+  mutate(measurement_datetime = hms::as_hms(measurement_datetime)) %>%
+  ggplot(aes(x = measurement_datetime)) +
+  geom_density() +
+  theme_classic() +
+  labs(x = "time of sample")
+
+# samples over time
+sample_timing <- working %>%
+  select(measurement_date) %>%
+  group_by(measurement_date) %>%
+  tally() %>%
+  ggplot(aes(x = measurement_date, y = n)) +
+  geom_path() +
+  theme_classic() +
+  labs(x = "measurement date", y = "daily samples")
+
+(val_dist | timing_dist) / sample_timing
+```

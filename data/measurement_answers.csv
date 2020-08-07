@@ -1,0 +1,101 @@
+concept_id,short_name,option_concept_id,option_name,data_bundle,clinical,notes,vocabulary_id,concept_code
+3002529,blood_group_abo,36308333,Group A,haematology,,,LOINC,LA19710-5
+3002529,blood_group_abo,36309587,Group B,haematology,,,LOINC,LA19709-7
+3002529,blood_group_abo,36309715,Group O,haematology,,,LOINC,LA19708-9
+3002529,blood_group_abo,36311267,Group AB,haematology,,,LOINC,LA28449-9
+3003310,blood_group_rhesus,45878583,Negative,haematology,,,LOINC,LA6577-6
+3003310,blood_group_rhesus,45884084,Positive,haematology,,,LOINC,LA6576-8
+4152180,pt_position,4050473,prone,position,position,,SNOMED,1240000
+4152180,pt_position,4142787,sitting,position,position,,SNOMED,33586001
+4152180,pt_position,4221822,supine,position,position,,SNOMED,40199007
+4183713,airway,4044008,tracheostomy tube,respiratory,oxygenation,,SNOMED,129121000
+4183713,airway,4097216,endotracheal tube,respiratory,oxygenation,,SNOMED,26412008
+4183713,airway,4124462,none (own airway),respiratory,oxygenation,,SNOMED,260413007
+4183713,airway,37017286,Supraglottic airway,respiratory,oxygenation,,SNOMED,713535007
+4222965,oxygen_del_device,4044008,tracheostomy tube,respiratory,oxygenation,,SNOMED,129121000
+4222965,oxygen_del_device,4097216,endotracheal tube,respiratory,oxygenation,,SNOMED,26412008
+4222965,oxygen_del_device,4124462,no device,respiratory,oxygenation,,SNOMED,260413007
+4222965,oxygen_del_device,4139525,high flow nasal cannulae,respiratory,oxygenation,"This is *different* to simple nasal cannulae. You may see branding such as ""Optiflow"" for example.",SNOMED,426854004
+4222965,oxygen_del_device,4145528,non-rebreath mask,respiratory,oxygenation,,SNOMED,427591007
+4222965,oxygen_del_device,4219814,nebuliser,respiratory,oxygenation,,SNOMED,334947002
+4222965,oxygen_del_device,4222966,simple face mask / capno mask,respiratory,oxygenation,,SNOMED,336602003
+4222965,oxygen_del_device,4224038,simple nasal cannulae,respiratory,oxygenation,,SNOMED,336623009
+4222965,oxygen_del_device,45759930,venturi mask,respiratory,oxygenation,,SNOMED,465433006
+4222965,oxygen_del_device,45760219,trachy mask,respiratory,oxygenation,,SNOMED,465839001
+4222965,oxygen_del_device,45768222,non-invasive mask or hood (CPAP/BiPAP mask),respiratory,oxygenation,,SNOMED,706226000
+4230167,vent_mode,4055374,Pressure Support Ventilation (PSV),respiratory,ventilation,All support modes. Includes CPAP via invasive ventilation (settings will differentiate),SNOMED,243144002
+4230167,vent_mode,4074666,High frequency oscillatory ventilation (HFOV),respiratory,ventilation,,SNOMED,243155002
+4230167,vent_mode,4113618,Synchronized intermittent mandatory ventilation (SIMV),respiratory,ventilation,All mandatory modes that allow for spontaneous breathing on top,SNOMED,286813003
+4230167,vent_mode,4120570,Pressure Controlled Ventilation (PCV),respiratory,ventilation,All mandatory ventilation modes that are pressure controlled,SNOMED,286812008
+4230167,vent_mode,4174578,spontaneous ventilation (SV),respiratory,ventilation,Likely only used on an anaesthetic ventilator when on a manual mode,SNOMED,276888009
+4230167,vent_mode,4236738,Volume Controlled Ventilation (VCV),respiratory,ventilation,All mandatory ventilation modes that are volume controlled,SNOMED,405609003
+4230167,vent_mode,4239130,High flow (optiflow),respiratory,ventilation,,SNOMED,57485005
+4238443,rhythm,313217,Atrial fibrillation,cardiac,rhythm,,SNOMED,49436004
+4238443,rhythm,313780,Second degree AV block - Mobitz type II atrioventricular block,cardiac,rhythm,,SNOMED,28189009
+4238443,rhythm,313791,bundle branch block,cardiac,rhythm,,SNOMED,6374002
+4238443,rhythm,314059,right bundle branch block,cardiac,rhythm,,SNOMED,59118001
+4238443,rhythm,314379,First degree atrioventricular block,cardiac,rhythm,,SNOMED,270492004
+4238443,rhythm,314665,Atrial flutter,cardiac,rhythm,,SNOMED,5370000
+4238443,rhythm,316998,left bundle branch block,cardiac,rhythm,,SNOMED,63467002
+4238443,rhythm,317302,Sinus node dysfunction,cardiac,rhythm,,SNOMED,60423000
+4238443,rhythm,320744,Third degree AV block - Complete atrioventricular block,cardiac,rhythm,,SNOMED,27885002
+4238443,rhythm,437894,ventricular fibrilation,cardiac,rhythm,,SNOMED,71908006
+4238443,rhythm,4007310,Sinus trachycardia,cardiac,rhythm,,SNOMED,11092001
+4238443,rhythm,4008580,Ventricular bigeminy,cardiac,rhythm,,SNOMED,11157007
+4238443,rhythm,4103295,ventricular tachycardia,cardiac,rhythm,,SNOMED,25569003
+4238443,rhythm,4124698,Re-entrant atrioventricular node tachycardia,cardiac,rhythm,,SNOMED,233896004
+4238443,rhythm,4124699,Re-entrant atrioventricular tachycardia,cardiac,rhythm,,SNOMED,233897008
+4238443,rhythm,4135823,Torsades de pointes,cardiac,rhythm,,SNOMED,31722008
+4238443,rhythm,4145848,Pulseless electrical activity,cardiac,rhythm,,SNOMED,426975008
+4238443,rhythm,4171269,Atrial tachycardia,cardiac,rhythm,,SNOMED,276796006
+4238443,rhythm,4171683,Sinus bradycardia,cardiac,rhythm,,SNOMED,49710005
+4238443,rhythm,4205137,Second degree AV block - Mobitz type I incomplete atrioventricular block,cardiac,rhythm,,SNOMED,54016002
+4238443,rhythm,4216773,Asystole,cardiac,rhythm,,SNOMED,397829000
+4238443,rhythm,4218739,Junctional premature beats,cardiac,rhythm,,SNOMED,81681009
+4238443,rhythm,4275423,supra-ventricular tachycardia,cardiac,rhythm,,SNOMED,6456007
+4238443,rhythm,4276669,Normal Sinus Rhythm,cardiac,rhythm,,SNOMED,64730000
+4238443,rhythm,4304202,Rhythm from artificial pacing,cardiac,rhythm,,SNOMED,10370003
+4238443,rhythm,44782442,Atrial fibrillation with rapid ventricular response,cardiac,rhythm,,SNOMED,120041000119109
+4269997,smoking_quant,4041511,Heavy cigarette smoker,respiratory,smoking,,SNOMED,230063004
+4269997,smoking_quant,4042037,Light cigarette smoker,respiratory,smoking,,SNOMED,230060001
+4269997,smoking_quant,4044776,Moderate cigarette smoker,respiratory,smoking,,SNOMED,230062009
+4275495,smoking_status,4222303,Non-smoker,respiratory,smoking,,SNOMED,8392000
+4275495,smoking_status,4298794,Smoker,respiratory,smoking,,SNOMED,77176002
+4275495,smoking_status,4310250,Ex-smoker,respiratory,smoking,,SNOMED,8517006
+4275495,smoking_status,40298657,Never smoked,respiratory,smoking,,SNOMED,137982008
+4287648,tep,35609506,Not appropriate for antibiotics,process_of_care,treatment_limitations,,SNOMED,1082791000000108
+4287648,tep,35609507,Appropriate for antibiotics,process_of_care,treatment_limitations,,SNOMED,1082801000000107
+4287648,tep,35609508,Not appropriate for intravenous fluids,process_of_care,treatment_limitations,,SNOMED,1082811000000109
+4287648,tep,35609509,Appropriate for intravenous fluids,process_of_care,treatment_limitations,,SNOMED,1082821000000103
+4287648,tep,35609510,Appropriate for deactivation of implantable cardioverter defibrillator,process_of_care,treatment_limitations,,SNOMED,1082831000000101
+4287648,tep,35609511,Not appropriate for deactivation of implantable cardioverter defibrillator,process_of_care,treatment_limitations,,SNOMED,1082841000000105
+4287648,tep,35609512,Appropriate for dialysis / renal replacement therapy,process_of_care,treatment_limitations,,SNOMED,1082851000000108
+4287648,tep,35609513,Not appropriate for dialysis / renal replacement therapy,process_of_care,treatment_limitations,,SNOMED,1082861000000106
+4287648,tep,35609514,Not appropriate for artificial feeding,process_of_care,treatment_limitations,,SNOMED,1082871000000104
+4287648,tep,35609515,Appropriate for artificial feeding,process_of_care,treatment_limitations,,SNOMED,1082881000000102
+4287648,tep,35609516,Appropriate for ward non-invasive ventilation,process_of_care,treatment_limitations,,SNOMED,1082891000000100
+4287648,tep,35609517,Not appropriate for ward non-invasive ventilation,process_of_care,treatment_limitations,,SNOMED,1082901000000104
+4287648,tep,35609518,Appropriate for end of life care plan,process_of_care,treatment_limitations,,SNOMED,1082911000000102
+4287648,tep,35609519,Not appropriate for end of life care plan,process_of_care,treatment_limitations,,SNOMED,1082921000000108
+4287648,tep,35609520,Not appropriate for admission to acute hospital,process_of_care,treatment_limitations,,SNOMED,1082931000000105
+4287648,tep,35609521,Appropriate for admission to acute hospital,process_of_care,treatment_limitations,,SNOMED,1082941000000101
+4287648,tep,35609522,Not appropriate for referral to critical care,process_of_care,treatment_limitations,,SNOMED,1082951000000103
+4287648,tep,35609523,Appropriate for referral to critical care,process_of_care,treatment_limitations,,SNOMED,1082961000000100
+4287648,tep,37017405,Has end of life care plan,process_of_care,treatment_limitations,,SNOMED,713673000
+4287648,tep,42872484,For cardiopulmonary resuscitation,process_of_care,treatment_limitations,,SNOMED,450475007
+4287648,tep,42872485,Not for cardiopulmonary resuscitation,process_of_care,treatment_limitations,DNAR orders are mandated to have a valid start date and end date / date for review.,SNOMED,450476008
+37018292,rrt_mode,4049846,CVVHDF (Continuous venovenous hemodiafiltration),renal,renal_filtration,,SNOMED,233590002
+37018292,rrt_mode,4051326,IHD (Intermittent hemodialysis),renal,renal_filtration,,SNOMED,233575001
+37018292,rrt_mode,4051329,CVVHD (Continuous venovenous hemodialysis),renal,renal_filtration,,SNOMED,233580005
+37018292,rrt_mode,4051330,CVVHF (Continuous venovenous hemofiltration),renal,renal_filtration,,SNOMED,233585000
+37018292,rrt_mode,4080968,SCUF (slow continuous ultrafiltration),renal,renal_filtration,,SNOMED,182750009
+37018292,rrt_mode,4324124,PD (peritoneal dialysis),renal,renal_filtration,,SNOMED,71192002
+37208386,acvpu,4086843,alert,vitals,neurological,,SNOMED,248234008
+37208386,acvpu,4101192,responds to voice,vitals,neurological,,SNOMED,300202002
+37208386,acvpu,4164633,confused,vitals,neurological,,SNOMED,40917007
+37208386,acvpu,4309389,unresponsive,vitals,neurological,,SNOMED,422768004
+37208386,acvpu,42872852,responds to pain,vitals,neurological,,SNOMED,450847001
+37310255,covid_test,37310281,2019 novel coronavirus not detected,covid,covid,,SNOMED,1240591000000102
+37310255,covid_test,37310282,2019 novel coronavirus detected,covid,covid,,SNOMED,1240581000000104
+44807161,cam-icu,9189,negative,neuro,delerium,,SNOMED,260385009
+44807161,cam-icu,9191,positive,neuro,delerium,,SNOMED,10828004
