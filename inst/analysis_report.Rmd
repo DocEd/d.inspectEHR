@@ -83,7 +83,7 @@ It is assumed that these have been applied successfully before running this repo
 ## Structural Checks
 
 ```{r prepare-st}
-if (local_hospital == "UHB") {
+if (params$local_hospital == "UHB") {
   ctn <- DBI::dbConnect(
     drv = this_drv(),
     driver = "SQL Server",
