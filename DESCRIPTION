@@ -1,6 +1,6 @@
 Package: d.inspectEHR
 Title: Data Quality Evaluation for DECOVID
-Version: 0.1
+Version: 0.1.1
 Authors@R: 
     person(given = "Edward",
            family = "Palmer",

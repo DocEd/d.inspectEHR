@@ -83,13 +83,21 @@ It is assumed that these have been applied successfully before running this repo
 ## Structural Checks
 
 ```{r prepare-st}
-ctn <- DBI::dbConnect(
-  drv = this_drv(),
-  host = params$host,
-  port = params$port,
-  user = params$user,
-  password = params$password,
-  dbname = params$dbname)
+if (local_hospital == "UHB") {
+  ctn <- DBI::dbConnect(
+    drv = this_drv(),
+    driver = "SQL Server",
+    server = params$host,
+    database = params$dbname)
+} else {
+  ctn <- DBI::dbConnect(
+    drv = this_drv(),
+    host = params$host,
+    port = params$port,
+    user = params$user,
+    password = params$password,
+    dbname = params$dbname)
+}
 
 schema <- params$schema
 
