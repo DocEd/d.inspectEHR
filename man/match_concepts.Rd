@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{match_concepts}
 \alias{match_concepts}
-\title{Match and replace Athena codes wtih proper names}
+\title{Match and replace Athena codes with proper names}
 \usage{
 match_concepts(column, lookup)
 }
@@ -19,5 +19,5 @@ match_concepts(column, lookup)
 
 }
 \description{
-Match and replace Athena codes wtih proper names
+Match and replace Athena codes with proper names
 }
