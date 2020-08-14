@@ -154,3 +154,38 @@ is.integer64 <- function(x) {
   check_class <- class(x)
   any(class(x) == "integer64")
 }
+
+get_db_driver <- function(params) {
+  if (params$driver == "PostgreSQL") {
+    this_drv <- RPostgres::Postgres
+  } else if (params$driver == "ODBC") {
+    this_drv <- odbc::odbc
+  } else if (params$driver == "SQLite") {
+    this_drv <- RSQLite::SQLite
+  } else {
+    rlang::abort("There is no available DB Driver")
+  }
+  return(this_drv)
+}
+
+setup_ctn <- function(params) {
+  this_drv <- get_db_driver(params)
+
+  if (params$local_hospital == "UHB") {
+    ctn <- DBI::dbConnect(
+      drv = this_drv(),
+      driver = "SQL Server",
+      server = params$host,
+      database = params$dbname)
+  } else {
+    ctn <- DBI::dbConnect(
+      drv = this_drv(),
+      host = params$host,
+      port = params$port,
+      user = params$user,
+      password = params$password,
+      dbname = params$dbname)
+  }
+
+  return(ctn)
+}
