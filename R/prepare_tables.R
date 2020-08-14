@@ -63,7 +63,6 @@ prepare_tables <- function(connection, schema_name) {
     )
 }
 
-
 #' Prepare Overview Table
 #'
 #' @param x the output from \code{\link{prepare_tables}}
@@ -94,7 +93,4 @@ prepare_overview <- function(x) {
                        .data$admitting_source_concept_id,
                        .data$discharge_to_concept_id),
               by = "person_id")
-
 }
-
-

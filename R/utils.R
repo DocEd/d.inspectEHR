@@ -1,4 +1,4 @@
-#' Match and replace Athena codes wtih proper names
+#' Match and replace Athena codes with proper names
 #'
 #' @param column an integer vector of Athena codes
 #' @param lookup an extract of the \code{concept} table with 2 columns:
@@ -14,9 +14,7 @@ match_concepts <- function(column, lookup) {
   } else {
     lookup$concept_name[match(column,  lookup$concept_id)]
   }
-
 }
-
 
 #' Tally OMOP Concept ID Column
 #'
@@ -71,9 +69,7 @@ mini_dict <- function(ctn, schema, concept_ids) {
     select(.data$concept_id, .data$concept_name) %>%
     collect() %>%
     mutate(concept_id = as.integer(.data$concept_id))
-
-  }
-
+}
 
 #' Summarise Missing Values within a Dataframe
 #'
@@ -98,7 +94,6 @@ summarise_missing <- function(x, tbl_name) {
     mutate(`% rows missing` = round((`n rows missing`/nrow(x))*100, 0))
 }
 
-
 #' Check which rows contain zero
 #'
 #' Appends a dataframe with a new column to identify rows that contain zeros.
@@ -122,7 +117,6 @@ check_zero_tally <- function(x, column) {
       labels = c("yes", "no"))
     )
 }
-
 
 quick_lead <- function(x) {
   if (length(x) == 1) {
