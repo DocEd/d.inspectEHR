@@ -31,7 +31,6 @@ prepare_tables <- function(connection, schema_name) {
   st[["visit_occurrence"]] <- collect(
     tbl(connection, in_schema(schema_name, "visit_occurrence")))
 
-
   st[["visit_detail"]] <- collect(
     tbl(connection, in_schema(schema_name, "visit_detail")))
 

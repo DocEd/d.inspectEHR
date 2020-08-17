@@ -142,6 +142,7 @@ left_join(null_counts, core_null_tolerance,
 
 ```{r ages}
 overview <- overview %>%
+  mutate(year_of_birth = as.Date(.data$year_of_birth)) %>%
   mutate(
     age = purrr::pmap_int(
       .l = list(.data$year_of_birth, .data$visit_start_datetime),
