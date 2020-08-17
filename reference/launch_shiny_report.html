@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Match and replace Athena codes with proper names — match_concepts • d.inspectEHR</title>
+<title>Launch the shiny version of the report — launch_shiny_report • d.inspectEHR</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Match and replace Athena codes with proper names — match_concepts" />
-<meta property="og:description" content="Match and replace Athena codes with proper names" />
+<meta property="og:title" content="Launch the shiny version of the report — launch_shiny_report" />
+<meta property="og:description" content="Launch the shiny version of the report" />
 
 
 
@@ -103,30 +103,24 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Match and replace Athena codes with proper names</h1>
+    <h1>Launch the shiny version of the report</h1>
     
-    <div class="hidden name"><code>match_concepts.Rd</code></div>
+    <div class="hidden name"><code>launch_shiny_report.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Match and replace Athena codes with proper names</p>
+    <p>Launch the shiny version of the report</p>
     </div>
 
-    <pre class="usage"><span class='fu'>match_concepts</span>(<span class='no'>column</span>, <span class='no'>lookup</span>)</pre>
+    <pre class="usage"><span class='fu'>launch_shiny_report</span>(<span class='no'>parms_list</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>column</th>
-      <td><p>an integer vector of Athena codes</p></td>
-    </tr>
-    <tr>
-      <th>lookup</th>
-      <td><p>an extract of the <code>concept</code> table with 2 columns:</p><ol>
-<li><p>concept_name (containing the full name replacement)</p></li>
-<li><p>concept_id (containing the Athena code)</p></li>
-</ol></td>
+      <th>parms_list</th>
+      <td><p>list version of <code>parms</code> from
+<code><a href='render_report.html'>render_report</a></code>.</p></td>
     </tr>
     </table>
 
