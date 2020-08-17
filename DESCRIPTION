@@ -31,7 +31,9 @@ Imports:
     janitor,
     patchwork,
     gt,
-    markovchain
+    markovchain,
+    forcats,
+    hms
 Suggests: 
     testthat,
     RPostgres,

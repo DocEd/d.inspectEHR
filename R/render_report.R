@@ -24,5 +24,4 @@ render_report <- function(output = NULL, prams = "ask") {
   report_pth <- system.file("analysis_report.Rmd", package = "d.inspectEHR")
   rmarkdown::render(report_pth, params = prams,
                     output_file = output)
-
 }
