@@ -59,7 +59,15 @@ prepare_tables <- function(connection, schema_name) {
                 -contains("source"),
                 contains("admitting_source_concept_id")),
               match_concepts, lookup = replace_names))
-    )
+    ) %>%
+    map(~
+          mutate(
+            .,
+            across(
+              c(contains("date"), -contains("datetime")),
+              as.Date
+            )
+          ))
 }
 
 #' Prepare Overview Table

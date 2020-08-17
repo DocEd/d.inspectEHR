@@ -16,7 +16,8 @@ if (nchar(curr_title) >= 30) {
 working <- tbl(ctn, in_schema(schema, "measurement")) %>%
   filter(measurement_concept_id %in% !! current_concept) %>%
   collect() %>%
-  mutate(across(where(is.integer64), as.integer))
+  mutate(across(where(is.integer64), as.integer)) %>%
+  mutate(across(c(contains("date"), -contains("datetime")), as.Date))
 
 working_unit <- meas_dict %>%
   filter(concept_id %in% unique(working$unit_concept_id))
