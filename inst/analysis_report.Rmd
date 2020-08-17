@@ -638,7 +638,7 @@ res_adm <- st[["visit_detail"]] %>%
         difftime(visit_detail_end_datetime, visit_detail_start_datetime, units = "days"))) %>%
   select(person_id, care_site_id, los)
 
-res_adm %>%
+res_adm_tbl <- res_adm %>%
   mutate(
     `length of stay` = case_when(
       los < 0 ~ "negative",
@@ -653,8 +653,15 @@ res_adm %>%
     total = sum(n),
     `%` = round((n/total)*100, 0)
   ) %>%
-  select(-total) %>%
-  mutate(tolerance = c(1, 1, 99, 1)) %>%
+  select(-total)
+
+res_adm_toll <- tibble(
+  `length of stay` = c("negative", "zero", "positive", "missing los data"),
+  tolerance = c(1, 1, 99, 1)
+)
+
+res_adm_toll %>%
+  left_join(res_adm_tbl, by = "length of stay") %>%
   gt() %>%
   tab_style(
     style = cell_fill(color = "red1", alpha = 0.5),
