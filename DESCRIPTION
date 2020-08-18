@@ -33,7 +33,8 @@ Imports:
     gt,
     markovchain,
     forcats,
-    hms
+    hms,
+    lubridate
 Suggests: 
     testthat,
     RPostgres,

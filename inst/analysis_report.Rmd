@@ -79,37 +79,15 @@ schema <- params$schema
 st <- prepare_tables(ctn, schema)
 overview <- prepare_overview(st)
 
-testthat::expect_true(all(!is.na(overview$visit_occurrence_id)))
-
-clinical_tbls <- tibble::tibble(
-  table = c(
-    "person",
-    "specimen",
-    "death",
-    "visit_occurrence",
-    "visit_detail",
-    "procedure_occurrence",
-    "drug_exposure",
-    "device_exposure",
-    "condition_occurrence",
-    "measurement",
-    "observation"
-    )
-)
+vo_id_true <- all(!is.na(overview$visit_occurrence_id))
 ```
+
+Check that all visit_occurrence_id is populated: `r vo_id_true`
 
 Row counts for core clinical tables:
 
 ```{r row-counts}
-ttally <- clinical_tbls$table %>%
-  purrr::map_int(~ tbl(ctn, in_schema(schema, .)) %>%
-                   dplyr::tally() %>%
-                   collect() %>%
-                   dplyr::pull() %>%
-                   as.integer())
-
-clinical_tbls <- clinical_tbls %>%
-  mutate(n = ttally)
+clinical_tbls <- prepare_tally(ctn, schema)
 
 clinical_tbls %>%
   arrange(table) %>%
@@ -122,13 +100,8 @@ Sometimes is can be entirely appropriate.
 Rows are shown in **red** if they have a higher level of missingness than acceptable tolerances.
 
 ```{r null-counts}
-null_counts <- st %>%
-  purrr::imap(~ summarise_missing(.x, .y)) %>%
-  bind_rows() %>%
-  filter(!grepl(x = column, pattern = "source"))
-
-left_join(null_counts, core_null_tolerance,
-          by = c("table", "column")) %>%
+st %>%
+  prepare_null_counts() %>%
   gt() %>%
   tab_style(
     style = cell_fill(color = "red1", alpha = 0.5),
@@ -141,80 +114,11 @@ left_join(null_counts, core_null_tolerance,
 ## Person Table
 
 ```{r ages}
-overview <- overview %>%
-  mutate(
-    age = purrr::pmap_int(
-      .l = list(.data$year_of_birth, .data$visit_start_datetime),
-      .f = ~ as.integer(
-    difftime(..2, as.Date(paste0(..1, "-12-31")), units = "weeks")/52))
-  )
-
-age_plot <- overview %>%
-  mutate(age = cut(age, c(18, seq(20, 140, by = 5)))) %>%
-  group_by(age) %>%
-  tally() %>%
-  ggplot(aes(x = age)) +
-  geom_point(aes(y = n)) +
-      geom_segment(aes(
-        y = 0,
-        yend = n,
-        xend = age)) +
-  theme_classic() +
-  labs(y = "count") +
-  theme(
-    plot.title.position = "plot",
-    axis.title.y = element_blank()) +
-    coord_flip() +
-  ggtitle("Age Distribution")
-
-sex_plot <- st[["person"]] %>%
-  group_by(gender_concept_id) %>%
-  tally() %>%
-  ggplot(aes(x = gender_concept_id)) +
-  geom_point(aes(y = n)) +
-      geom_segment(aes(
-        y = 0,
-        yend = n,
-        xend = gender_concept_id)) +
-  theme_classic() +
-  labs(y = "count", x = "categories") +
-  theme(
-    plot.title.position = "plot",
-    axis.title.y = element_blank()) +
-  coord_flip() +
-  ggtitle("Sex distribution")
-
-ethnic_plot <- st[["person"]] %>%
-  mutate(
-    race_concept_id = gsub(
-      " - England and Wales ethnic category 2011 census",
-      "",
-      race_concept_id)) %>%
-  mutate(
-    race_concept_id = if_else(
-      nchar(race_concept_id) >= 30,
-      paste0(stringr::str_sub(race_concept_id, 1, 29), "..."),
-      race_concept_id)) %>%
-  mutate(
-    race_concept_id = forcats::fct_rev(
-      forcats::fct_infreq(race_concept_id))) %>%
-  group_by(race_concept_id) %>%
-  tally() %>%
-  ggplot(aes(x = race_concept_id)) +
-  geom_point(aes(y = n)) +
-      geom_segment(aes(
-        y = 0,
-        yend = n,
-        xend = race_concept_id)) +
-  theme_classic() +
-  labs(y = "count", x = "categories") +
-  theme(
-    plot.title.position = "plot",
-    axis.title.y = element_blank()) +
-  coord_flip() +
-  ggtitle("Ethnicity Distribution")
-
+age_plot <- plot_age(overview)
 check_age <- min(overview$age, na.rm = TRUE) >= 18
+
+sex_plot <- plot_sex(st[["person"]])
+ethnic_plot <- plot_ethnicity(st[["person"]])
 
 age_plot + sex_plot + ethnic_plot
 ```
@@ -228,36 +132,8 @@ Madatory checks
 Date boundaries of the cohort:
 
 ```{r cohort-boundaries, echo=FALSE, warning=FALSE}
-cohort_boundaries <- st[["visit_occurrence"]] %>%
-  dplyr::summarise(
-    first_visit_date = min(visit_start_date, na.rm = TRUE),
-    first_visit_dttm = min(visit_start_datetime, na.rm = TRUE),
-    last_visit_date = max(visit_start_date, na.rm = TRUE),
-    last_visit_dttm = max(visit_start_date, na.rm = TRUE),
-    first_dc_date = min(visit_end_date, na.rm = TRUE),
-    first_dc_dttm = min(visit_end_datetime, na.rm = TRUE),
-    last_dc_date = max(visit_end_date, na.rm = TRUE),
-    last_dc_dttm = max(visit_end_datetime, na.rm = TRUE)
-    ) %>%
-  tidyr::pivot_longer(everything(), names_to = "observation", values_to = "time") %>%
-  mutate(
-    comparison = if_else(
-      grepl(x = observation, pattern = "first"),
-      as.POSIXct("2020-01-01 00:00:00"),
-      Sys.time()
-    )
-  ) %>%
-  mutate(
-    tolerance = case_when(
-      grepl(x = observation, pattern = "first") & time < comparison ~ "fail",
-      grepl(x = observation, pattern = "first") & time >= comparison ~ "pass",
-      grepl(x = observation, pattern = "last") & time > comparison ~ "fail",
-      grepl(x = observation, pattern = "last") & time <= comparison ~ "pass",
-      TRUE ~ "fail"
-    )
-  )
-
-cohort_boundaries %>%
+st[["visit_occurrence"]] %>%
+  prepare_cohort_boundaries() %>%
   gt() %>%
   tab_style(
     style = cell_fill(color = "red1", alpha = 0.5),
@@ -266,8 +142,6 @@ cohort_boundaries %>%
   ) %>%
   tab_options(table.width = pct(100))
 ```
-
-
 
 Number of visits stratified by visit type:
 
@@ -283,19 +157,7 @@ st[["visit_occurrence"]] %>%
 ```
 
 ```{r visit-profile}
-st[["visit_occurrence"]] %>%
-  mutate_at(vars(visit_start_datetime), ~ as.Date(.)) %>%
-  group_by(visit_start_datetime, visit_concept_id) %>%
-  tally() %>%
-  ggplot(aes(x = visit_start_datetime, y = n,
-             group = visit_concept_id, colour = visit_concept_id)) +
-  geom_path() +
-  theme_classic() +
-  labs(y = "patient attendances", x = "arrival date", colour = "visit type") +
-  theme(
-    plot.title.position = "plot",
-    legend.position = "bottom") +
-  ggtitle("Admission profile by type of admission")
+plot_visit_profile(st[["visit_occurrence"]])
 ```
 
 Admission codes outside the approved list:
@@ -804,7 +666,8 @@ dq_ref %>%
   mutate(
     status = case_when(
       concept_id %in% meas_in_ref ~ "Onboarded",
-      concept_id %in% meas_out ~ "Pending"
+      concept_id %in% meas_out ~ "Pending",
+      concept_id %in% meas_nin_ref ~ "Item not on roadmap"
   )) %>%
   select(concept_id, short_name, status) %>%
   arrange(concept_id) %>%
@@ -818,7 +681,6 @@ dq_ref %>%
   ) %>%
   tab_options(table.width = pct(100))
 ```
-
 
 This section details all measurements:
 

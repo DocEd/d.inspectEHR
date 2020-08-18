@@ -4,7 +4,7 @@
 \alias{launch_shiny_report}
 \title{Launch the shiny version of the report}
 \usage{
-launch_shiny_report(parms_list)
+launch_shiny_report(connection = NULL, schema = "decovid_omop")
 }
 \arguments{
 \item{parms_list}{list version of \code{parms} from

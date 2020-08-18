@@ -1,5 +1,5 @@
-#' @importFrom shiny navbarPage tabPanel sidebarLayout sidebarPanel 
-#' checkboxInput mainPanel tabsetPanel tableOutput plotOutput
+#' @importFrom shiny navbarPage tabPanel sidebarLayout sidebarPanel
+#'   checkboxInput mainPanel tabsetPanel tableOutput plotOutput
 ui <- navbarPage("QC report", id = "nav",
   tabPanel("Structural checks",
     sidebarLayout(
@@ -33,7 +33,7 @@ ui <- navbarPage("QC report", id = "nav",
       ),
       mainPanel(width = 10,
         tabsetPanel(
-          tabPanel("Sex distribution", plotOutput("person_plot_one")),
+          tabPanel("Sex distribution", plotOutput("plot_sex")),
           tabPanel("Ethnicity distribution", plotOutput("person_plot_two")),
           tabPanel("Age distribution", plotOutput("person_plot_three"))
         )

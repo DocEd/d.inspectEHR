@@ -1,158 +1,161 @@
-concept_id,short_name,long_name,target_column,units,units_concept_id,limit_low,limit_high,fact_relationship,data_bundle,sub_bundle,order,comments,vocabulary_id,concept_code
-1023094,be_standard,Standard base excess,value_as_number,mmol/L,8753,NULL,NULL,source of sample,point_of_care,derived,2,Base *excess* not deficit,LOINC,LP307350-1
-3000285,sodium,Sodium [Moles/volume] in Blood,value_as_number,micromol/L,8749,NULL,NULL,source of sample,labs,biochem,2,,LOINC,2947-0
-3000483,glucose_blood,blood glucose,value_as_number,mmol/L,8753,NULL,NULL,source of sample,labs,biochem,1,,LOINC,2339-0
-3000620,complement_c3,Complement C3 [Mass/volume] in Serum or Plasma,value_as_number,g/L,8636,NULL,NULL,,labs,immunology,2,,LOINC,4485-9
-3000963,hb,Hemoglobin [Mass/volume] in Blood,value_as_number,g/L,8636,NULL,NULL,,labs,haem,1,,LOINC,718-7
-3001110,alp,Alkaline phosphatase [Enzymatic activity/volume] in Blood,value_as_number,IU/L,8923,NULL,NULL,,labs,lfts,2,,LOINC,1783-0
-3002385,rcdw,Erythrocyte distribution width [Ratio],value_as_number,%,8554,NULL,NULL,,labs,haem,2,,LOINC,30385-9
-3002529,blood_group_abo,ABO group [Type] in Blood,value_as_concept_id,,,,,,haematology,,2,,LOINC,883-9
-3002582,urine_blood,Erythrocytes (blood) [#/volume] in Urine,value_as_number,cells/microL,8784,NULL,NULL,,urine,urine,3,"some systems use categories: ""+"", ""++"" etc. Please discuss with your lab and convert to the equivalent numeric value",LOINC,30391-7
-3003181,urine_na,urinary sodium (instantanious measure),value_as_number,mmol/L,8753,NULL,NULL,,urine,urine,3,,LOINC,2955-3
-3003310,blood_group_rhesus,Rh [Type] in Blood,value_as_concept_id,,,,,,haematology,,2,,LOINC,10331-7
-3003338,mchc,mean cell haem conc. MCHC [Mass/volume],value_as_number,g/L,8636,NULL,NULL,,labs,haem,2,,LOINC,28540-3
-3005456,potassium,Potassium [Moles/volume] in Blood,value_as_number,mmol/L,8753,NULL,NULL,source of sample,labs,biochem,2,,LOINC,6298-4
-3007194,gcs_tot,GCS total,value_as_number,,,1,15,,vitals,neurological,1,,LOINC,9269-2
-3007220,ck,Creatine kinase [Enzymatic activity/volume] in Serum or Plasma,value_as_number,IU/L,8923,NULL,NULL,,labs,cardiac,2,,LOINC,2157-6
-3007461,plts,Platelets [#/volume] in Blood,value_as_number,x10^9/L,44777588,NULL,NULL,,labs,haem,1,,LOINC,26515-7
-3007930,methb,methaemoglobin,value_as_number,%,8554,NULL,NULL,source of sample,point_of_care,co-oximetry,3,,LOINC,2614-6
-3008116,urine_ket,Ketones [Moles/volume] in Urine by Test strip,value_as_number,mmol/L,8753,NULL,NULL,,urine,urine,3,"some systems use categories: ""+"", ""++"" etc. Please discuss with your lab and convert to the equivalent numeric value",LOINC,22702-5
-3008223,gcs_m,GCS - motor component,value_as_number,,,1,6,,vitals,neurological,2,,LOINC,9268-4
-3008770,urine_glu,Glucose [Moles/volume] in Urine by Test strip,value_as_number,mmol/L,8753,NULL,NULL,,urine,urine,3,"some systems use categories: ""+"", ""++"" etc. Please discuss with your lab and convert to the equivalent numeric value",LOINC,22705-8
-3009094,gcs_v,GCS - verbal component,value_as_number,,,1,5,,vitals,neurological,2,"Sometimes recorded at ""0"" or ""T"" if patient is intubated. Please omit in these cases.",LOINC,9270-0
-3009542,hct,Hematocrit [Volume Fraction] of Blood,value_as_number,L/L,44777604,NULL,NULL,,labs,haem,2,,LOINC,20570-8
-3010421,ph,pH - ABG / VBG / Capillary / RRT,value_as_number,pH,8482,NULL,NULL,source of sample,point_of_care,blood_gas,2,,LOINC,11558-4
-3010813,wcc_total,white cell count (Leukocytes [#/volume] in Blood),value_as_number,x10^9/L,44777588,NULL,NULL,,labs,haem,1,,LOINC,26464-8
-3011152,vit_b12,Cobalamin (Vitamin B12) [Mass/volume] in Blood,value_as_number,pg/mL,8845,NULL,NULL,,labs,biochem,2,,LOINC,16695-9
-3011689,thb,total haemoglobin,value_as_number,g/L,8636,NULL,NULL,source of sample,point_of_care,co-oximetry,3,,LOINC,4536-9
-3011961,ferritin,Ferritin [Mass/volume] in Blood,value_as_number,ng/mL,8842,NULL,NULL,,labs,haem,1,,LOINC,24373-3
-3013176,apttr,aPTT ratio (aPTT normal/actual in Platelet poor plasma by Coagulation assay),value_as_number,,,NULL,NULL,,labs,clotting,2,,LOINC,5899-0
-3013429,wcc_baso,Basophils [#/volume] in Blood by Automated count,value_as_number,x10^9/L,44777588,NULL,NULL,,labs,haem,2,,LOINC,704-7
-3013466,aptt,aPTT in Platelet poor plasma by Coagulation assay,value_as_number,seconds,8555,NULL,NULL,,labs,clotting,2,,LOINC,3173-2
-3013502,so2,SxO2 - ABG / VBG / Capillary / RRT,value_as_number,%,8554,NULL,NULL,source of sample,point_of_care,co-oximetry,2,,LOINC,20564-1
-3013721,ast,Aspartate aminotransferase [Enzymatic activity/volume] in Serum or Plasma,value_as_number,IU/L,8923,NULL,NULL,,labs,lfts,2,,LOINC,1920-8
-3014835,uo,Urine output,value_as_number,L,8519,>=0,NULL,,fluid_balance,renal,2,should refer to the amount of urine produced since the last recording. Could be hourly if recorded as routine (ICU) or less commonly if patient voiding intermittently,LOINC,9188-4
-3015183,esr,eryhtrocyte sedimentation rate,value_as_number,mm/h,8752,NULL,NULL,,labs,inflammation,1,,LOINC,30341-2
-3015377,calcium_total,Calcium [Moles/volume] in Serum or Plasma,value_as_number,mmol/L,8753,NULL,NULL,,labs,biochem,2,"Some systems will have an ""adjusted calcium"" please note, this is the RAW total unionised calcium",LOINC,2000-8
-3016038,urine_k,urinary potassium (instantanious measure),value_as_number,mmol/L,8753,NULL,NULL,,urine,urine,3,,LOINC,2828-2
-3016293,hco3_standard,Standard bicarbonate - ABG / VBG / Capillary / RRT,value_as_number,mmol/L,8753,NULL,NULL,source of sample,point_of_care,derived,2,,LOINC,1963-8
-3016335,gcs_e,GCS - eye component,value_as_number,,,1,4,,vitals,neurological,2,,LOINC,9267-6
-3016407,fibrinogen,fibrinogen,value_as_number,g/L,8636,NULL,NULL,,labs,clotting,2,,LOINC,3255-7
-3017732,wcc_neut,Neutrophils [#/volume] in Blood,value_as_number,x10^9/L,44777588,NULL,NULL,,labs,haem,1,,LOINC,26499-4
-3017766,complement_c4,Complement C4 [Mass/volume] in Serum or Plasma,value_as_number,g/L,8636,NULL,NULL,,labs,immunology,2,,LOINC,4498-2
-3018095,urine_leu,Leukocytes [#/volume] in Urine,value_as_number,cells/microL,8784,NULL,NULL,,urine,urine,3,"some systems use categories: ""+"", ""++"" etc. Please discuss with your lab and convert to the equivalent numeric value",LOINC,30405-5
-3018572,chloride,Chloride [Moles/volume] in Blood,value_as_number,mmol/L,8753,NULL,NULL,source of sample,labs,biochem,2,,LOINC,2069-3
-3018913,phosphate,Phosphate [Moles/volume] in Blood,value_as_number,mmol/L,8753,NULL,NULL,,labs,biochem,3,,LOINC,24519-1
-3019198,wcc_lymp,Lymphocytes [#/volume] in Blood,value_as_number,x10^9/L,44777588,NULL,NULL,,labs,haem,1,,LOINC,26474-7
-3020059,calcium_corr,Calcium [Moles/volume] corrected for albumin in Serum or Plasma,value_as_number,mmol/L,8753,NULL,NULL,,labs,biochem,2,,LOINC,29265-6
-3020149,vit_d,Calcidiol [Mass/volume] in Serum or Plasma,value_as_number,nmol/L,8736,NULL,NULL,,labs,biochem,2,"active molecule of vitamin D pathway. Many centers may record different variants of this, so local correlation is required",LOINC,1989-3
-3020460,crp,C reactive protein [Mass/volume] in Serum or Plasma,value_as_number,mg/L,8751,>0,<2000,,labs,inflammation,1,,LOINC,1988-5
-3020564,creatinine,Creatinine,value_as_number,micromol/L,8749,>0,<2000,,labs,biochem,1,,LOINC,14682-9
-3020716,fio2,Inspired fraction of oxygen,value_as_number,ratio,8523,0.21,1,,vitals,respiratory,1,this is a FRACTION not a percentage,LOINC,3150-0
-3020779,urea,Urea [Moles/volume] in Serum or Plasma,value_as_number,mmol/L,8753,NULL,NULL,,labs,biochem,1,,LOINC,22664-7
-3021119,calcium_ion,Calcium.ionized [Moles/volume] in Blood,value_as_number,mmol/L,8753,NULL,NULL,,labs,biochem,2,,LOINC,1994-3
-3022621,urine_ph,urinary pH,value_as_number,pH,8482,NULL,NULL,,urine,urine,3,,LOINC,5803-2
-3023520,reticulocyte_count,Reticulocytes [#/volume] in Blood,value_as_number,,,NULL,NULL,,labs,haem,2,,LOINC,14196-0
-3024561,albumin,Albumin [Mass/volume] in Serum or Plasma,value_as_number,g/L,8636,>0,<80,,labs,lfts,1,,LOINC,1751-7
-3024731,mcv,MCV [Entitic volume],value_as_number,femtoliter (fL),8583,NULL,NULL,,labs,haem,2,,LOINC,30428-7
-3025315,weight,Weight,value_as_number,Kg,9529,>0,<300,data origin,demographic,demographic,1,,LOINC,29463-7
-3025839,triglyceride,Triglyceride [Moles/volume] in Serum or Plasma,value_as_number,mmol/L,8753,NULL,NULL,,labs,covid,2,,LOINC,14927-8
-3026361,rcc,Erythrocytes [#/volume] in Blood,value_as_number,x10^12/L,8734,NULL,NULL,,labs,haem,2,,LOINC,26453-1
-3026493,urate,Urate [Moles/volume] in Serum or Plasma,value_as_number,,,NULL,NULL,,labs,,3,,LOINC,14933-6
-3026782,urine_osmo,urine osmolality,value_as_number,mOsm/kg,8862,NULL,NULL,,urine,urine,3,,LOINC,2695-5
-3026910,ggt,Gamma glutamyl transferase [Enzymatic activity/volume] in Serum or Plasma,value_as_number,IU/L,8923,NULL,NULL,,labs,lfts,3,,LOINC,2324-2
-3027801,po2,PxO2 - ABG / VBG / Capillary / RRT,value_as_number,kPa,44777602,NULL,NULL,source of sample,point_of_care,blood_gas,2,,LOINC,2703-7
-3027945,reticulocyte_percent,Reticulocytes/100 erythrocytes in Blood,value_as_number,%,8554,NULL,NULL,,labs,haem,2,,LOINC,4679-7
-3027946,pco2,PxCO2 - ABG / VBG / Capillary / RRT,value_as_number,kPa,44777602,NULL,NULL,source of sample,point_of_care,blood_gas,2,,LOINC,2019-8
-3028615,wcc_eosi,Eosinophils [#/volume] in Blood by Automated count,value_as_number,x10^9/L,44777588,NULL,NULL,,labs,haem,2,,LOINC,711-2
-3029435,nt_pro_bnp,Natriuretic peptide.B prohormone N-Terminal [Moles/volume] in Serum or Plasma,value_as_number,ng/L,8725,NULL,NULL,,labs,cardiac,1,,LOINC,33763-4
-3032051,urine_uro,Urobilinogen [Moles/volume] in Urine by Test strip,value_as_number,mmol/L,8753,NULL,NULL,,urine,urine,3,,LOINC,34928-2
-3032080,inr,INR in Blood by Coagulation assay,value_as_number,seconds,8555,NULL,NULL,,labs,clotting,2,,LOINC,34714-6
-3033543,urine_sg,urine specific gravity,value_as_number,seconds,8555,NULL,NULL,,urine,urine,3,,LOINC,2965-2
-3033575,wcc_mono,Monocytes [#/volume] in Blood by Automated count,value_as_number,x10^9/L,44777588,NULL,NULL,,labs,haem,2,,LOINC,742-7
-3033745,troponin_i,Troponin I.cardiac [Mass/volume] in Blood,value_as_number,ng/L,8725,NULL,NULL,,labs,cardiac,1,,LOINC,42757-5
-3033836,magnesium,Magnesium [Moles/volume] in Blood,value_as_number,mmol/L,8753,NULL,NULL,,labs,biochem,3,,LOINC,2593-2
-3034426,pt,Prothrombin time (PT),value_as_number,seconds,8555,NULL,NULL,,labs,clotting,2,,LOINC,5902-2
-3035941,mch,MCH [Entitic mass],value_as_number,pg,8564,NULL,NULL,,labs,haem,2,,LOINC,28539-5
-3036277,height,Height,value_as_number,m,9546,>0,<2.72,data origin,demographic,demographic,1,,LOINC,8302-2
-3037121,urine_pro,Protein [Mass/volume] in Urine,value_as_number,g/L,8636,NULL,NULL,,urine,urine,3,"some systems use categories: ""+"", ""++"" etc. Please discuss with your lab and convert to the equivalent numeric value",LOINC,2888-6
-3041012,urine_bil,Bilirubin.total [Moles/volume] in Urine by Test strip,value_as_number,mmol/L,8753,NULL,NULL,,urine,urine,3,"some systems use categories: ""+"", ""++"" etc. Please discuss with your lab and convert to the equivalent numeric value",LOINC,41016-7
-3041084,wcc_immature_n,Immature granulocytes [#/volume] in Blood by Automated count,value_as_number,,,NULL,NULL,,labs,haem,2,,LOINC,53115-2
-3042812,urine_nit,Nitrite [Presence] in Urine,value_as_concept_id,,,NULL,NULL,,urine,urine,3,,LOINC,32710-6
-3047181,lactate,Lactate [Moles/volume] in Blood,value_as_number,mmol/L,8753,NULL,NULL,,labs,biochem,2,,LOINC,32693-4
-3048529,troponin_t,Troponin T.cardiac [Mass/volume] in Blood,value_as_number,ng/L,8725,NULL,NULL,,labs,cardiac,1,,LOINC,48425-3
-4009426,cholesterol_ldl,LDL cholesterol,value_as_number,mmol/L,8753,NULL,NULL,,labs,covid,2,,SNOMED,102739008
-4011133,cholesterol_hdl,HDL cholesterol,value_as_number,mmol/L,8753,NULL,NULL,,labs,covid,2,,SNOMED,102737005
-4066034,p_peak,peak inspiratory airway pressure (measured),value_as_number,cmH2O,4118138,NULL,NULL,,respiratory,ventilation,4,,SNOMED,17202005
-4087260,pef,Peak expiratory flow,value_as_number,,,NULL,NULL,,respiratory,,2,,SNOMED,18491006
-4090193,fluid_output_tot,fluid output total,value_as_number,L,8519,>0,NULL,,fluid_balance,renal,2,"total fluid output since the previous record. Could be for a single hour and reported each hour, but also respects areas of the hospital where this is done less frequently",SNOMED,251841007
-4092501,fluid_input_tot,fluid input total,value_as_number,L,8519,>0,NULL,,fluid_balance,renal,2,"total fluid input since the previous record. Could be for a single hour and reported each hour, but also respects areas of the hospital where this is done less frequently",SNOMED,251852001
-4108138,rr_mand,Mandatory Respiratory Rate (setting),value_as_number,/min,8541,NULL,NULL,,respiratory,ventilation,4,Number of mandatory breathes given by the ventilator in 1 minute,SNOMED,250876000
-4108450,ie_ratio,inspiratory expiratory ratio (setting),value_as_number,,,NULL,NULL,,respiratory,ventilation,4,"If given in the form ""1:2"" convert to numeric 0.5",SNOMED,250822000
-4141684,o2_lpm,Delivered oxygen flow rate,value_as_number,L/min,8698,NULL,NULL,,vitals,respiratory,1,"this is a flow rate delivered to the patient, if using an oxygen device that does not determine by FiO2 (for example, a normal facemask)",SNOMED,427081008
-4151768,smoking_hx,Smoking history in pack years,value_as_number,,,NULL,NULL,,respiratory,smoking,2,A standardised convertion should be made to transform qualitative descriptions of smoking into pack years,SNOMED,315609007
-4152180,pt_position,patient position,value_as_concept_id,,,NULL,NULL,,position,position,2,,SNOMED,271605009
-4152194,sbp,systolic blood pressure,value_as_number,mmHg,8876,NULL,NULL,location of measure,vitals,cardiac,1,,SNOMED,271649006
-4154772,rr_spont,Spontaneous Respiratory Rate (measured),value_as_number,/min,8541,NULL,NULL,,respiratory,ventilation,4,The number of breathes taken by an individual spontenously in 1 minute while on a ventilator,SNOMED,271625008
-4154790,dbp,diastolic blood pressure,value_as_number,mmHg,8876,>0,<250,location of measure,cardiac,cardiac,2,,SNOMED,271650006
-4176265,fvc_vol,forced vital capacity (actual volume),value_as_number,,,NULL,NULL,,respiratory,,2,,SNOMED,50834005
-4177991,bristol_stool,bowel motion graded as bristol stool,value_as_number,,,>=1,<=7,,gastro,gastro,3,,SNOMED,428208009
-4183713,airway,airway device,value_as_concept_id,,,NULL,NULL,,respiratory,oxygenation,2,,SNOMED,43725001
-4196583,fev1_fvc,FEV1/FVC percent,value_as_number,%,8554,,,,,,2,,SNOMED,313222007
-4199405,cholesterol_tot,Total cholesterol,value_as_number,mmol/L,8753,NULL,NULL,,labs,covid,2,,SNOMED,301860006
-4208972,fev1_pred,forced expiratory volume in 1 second (percentage predicted),value_as_number,%,8554,>=0,,,respiratory,,2,,SNOMED,313223002
-4215838,ps,Pressure support (setting),value_as_number,cmH2O,4118138,NULL,NULL,,respiratory,ventilation,2,,SNOMED,417071008
-4216746,peep,Positive End Expiratory Pressure (PEEP) (setting),value_as_number,cmH2O,4118138,NULL,NULL,,respiratory,ventilation,2,,SNOMED,416595007
-4220163,vol_tidal,tidal volume setting,value_as_number,mL,8587,NULL,NULL,,respiratory,ventilation,2,,SNOMED,416811008
-4221102,co,cardiac output,value_as_number,L/min,8698,>0,<35,,cardiac,cardiac,3,,SNOMED,82799009
-4222965,oxygen_del_device,oxygen delivery device,value_as_concept_id,,,NULL,NULL,,respiratory,oxygenation,2,,SNOMED,336589003
-4230167,vent_mode,ventilator mode,value_as_concept_id,,,NULL,NULL,,respiratory,ventilation,2,,SNOMED,40617009
-4238443,rhythm,heart rhythm,value_as_concept_id,,,NULL,NULL,,cardiac,cardiac,2,,SNOMED,364073003
-4239021,map,Mean arterial blood pressure,value_as_number,mmHg,8876,>0,<300,location of measure,cardiac,cardiac,1,,SNOMED,6797001
-4239408,hr,heart rate,value_as_number,/min,8541,0,350,,vitals,cardiac,1,,SNOMED,364075005
-4241837,fev1_vol,forced expiratory volume in 1 second (actual volume),value_as_number,,,NULL,NULL,,respiratory,,2,,SNOMED,59328004
-4269997,smoking_quant,Current smoking activity,value_as_concept_id,,,NULL,NULL,,respiratory,smoking,2,,SNOMED,365982000
-4275495,smoking_status,Smoking Status,value_as_concept_id,,,NULL,NULL,,respiratory,smoking,2,,SNOMED,365981007
-4287648,tep,Treatment escalation plan (incuding DNAR),value_as_concept_id,,,NULL,NULL,,process_of_care,treatment_limitations,2,,SNOMED,397608007
-4302666,temp,body temperature,value_as_number,degrees Celsius,586323,>10,<45,location of measure,vitals,infection,1,,SNOMED,386725007
-4313591,rr,respiratory rate,value_as_number,/min,8541,NULL,NULL,,vitals,respiratory,1,,SNOMED,86290005
-4321758,hhb,reduced/deoxy haemoglobin,value_as_number,%,8554,NULL,NULL,source of sample,point_of_care,co-oximetry,3,,SNOMED,9865006
-4353621,mv,Minute volume (measured),value_as_number,L,8519,NULL,NULL,,respiratory,ventilation,2,,SNOMED,250811004
-4353622,t_exp,expiratory time (Te) (setting),value_as_number,seconds,8555,NULL,NULL,,respiratory,ventilation,4,,SNOMED,250820008
-4353623,t_insp_pause,inspiratory time pause (setting),value_as_number,seconds,8555,NULL,NULL,,respiratory,ventilation,4,,SNOMED,250821007
-4353938,etco2,End tidal carbon dioxide,value_as_number,%,8554,NULL,NULL,,respiratory,ventilation,4,,SNOMED,250784008
-4353947,t_insp,inspiratory time (Ti) (setting),value_as_number,seconds,8555,NULL,NULL,,respiratory,ventilation,4,,SNOMED,250819002
-21490675,cvp,Central venous pressure,value_as_number,cmH2O,4118138,>0,<50,,cardiac,cardiac,3,,LOINC,60985-9
-36684829,rass,richmond agitation and sedation score,value_as_number,,,-5,4,,sedation,sedation,2,,SNOMED,457441000124102
-37018292,rrt_mode,renal replacement therapy mode,value_as_concept_id,,,NULL,NULL,,renal,renal_filtration,2,,SNOMED,714749008
-37208354,news2_total,National Early Warning Score version 2 (total score),value_as_number,,,0,21,,vitals,vitals,1,,SNOMED,1104061000000103
-37208374,news2_rr,National Early Warning Score version 2 (respiratory rate score),value_as_number,,,0,3,,vitals,vitals,1,,SNOMED,1104301000000104
-37208375,news2_oxy_scale1,National Early Warning Score version 2 (oxygenation score - scale 1),value_as_number,,,0,3,,vitals,vitals,1,,SNOMED,1104311000000102
-37208376,news2_oxy_scale2,National Early Warning Score version 2 (oxygenation score - scale 2),value_as_number,,,0,3,,vitals,vitals,1,,SNOMED,1104321000000108
-37208377,news_2_oxy_air,National Early Warning Score version 2 (oxygen or air score),value_as_number,,,0,2,,vitals,vitals,1,,SNOMED,1104331000000105
-37208378,news2_sbp,National Early Warning Score version 2 (systolic blood pressure score),value_as_number,,,0,3,,vitals,vitals,1,,SNOMED,1104341000000101
-37208379,news2_hr,National Early Warning Score version 2 (heart rate score),value_as_number,,,0,3,,vitals,vitals,1,,SNOMED,1104351000000103
-37208380,news2_brain,National Early Warning Score version 2 (consciousness score),value_as_number,,,0,3,,vitals,vitals,1,,SNOMED,1104361000000100
-37208381,news2_temp,National Early Warning Score version 2 (temperature score),value_as_number,,,0,3,,vitals,vitals,1,,SNOMED,1104371000000107
-37208386,acvpu,acvpu,value_as_concept_id,,,NULL,NULL,,vitals,neurological,1,,SNOMED,1104421000000100
-37310255,covid_pcr_test,Detection of 2019 novel coronavirus using polymerase chain reaction technique,value_as_concept_id,,,NULL,NULL,,covid,covid,1,The datetime should refer to time of resulting. A separate specimen can be recorded and linked whcih references the datetime of sample collection,SNOMED,1240511000000106
-37392971,pct,Procalcitonin,value_as_number,ng/mL,8842,NULL,NULL,,labs,inflammation,1,,SNOMED,1010991000000108
-40482503,fvc_pred,forced vital capacity (percentage predicted),value_as_number,%,8554,>=0,,,respiratory,,2,,SNOMED,445210000
-40483383,cfs,Canadian Study of Health and Aging clinical frailty scale,value_as_number,,,NULL,NULL,,,,2,Also known as the Rockwood clinicial frailty score,SNOMED,445414007
-40757494,bilirubin_tot,Bilirubin total [Moles/volume] in Blood,value_as_number,micromol/L,8749,NULL,NULL,,labs,lfts,2,,LOINC,54363-7
-40762499,spo2,SpO2,value_as_number,%,8554,0,100,,vitals,respiratory,1,peripheral,LOINC,59408-5
-40776165,cohb,carboxyhaemoglobin,value_as_number,%,8554,NULL,NULL,source of sample,point_of_care,co-oximetry,3,,LOINC,LP21418-6
-40785907,d_dimer,Fibrin D Dimers,value_as_number,ng/mL,8842,NULL,NULL,,labs,clotting,1,,LOINC,LP15987-8
-42869452,wcc_immature_perc,Immature granulocytes/100 leukocytes in Blood by Automated count,value_as_number,%,8554,NULL,NULL,,labs,haem,2,,LOINC,71695-1
-44782824,p_mean,mean inspiratory airway pressure (measured),value_as_number,cmH2O,4118138,NULL,NULL,,respiratory,ventilation,4,,SNOMED,698821009
-44782825,p_plat,airway plateau pressure (measured),value_as_number,cmH2O,4118138,NULL,NULL,,respiratory,ventilation,4,,SNOMED,698822002
-44802815,rrt_dialysate_q,Dialysate flow rate,value_as_concept_id,mL/h,44777613,NULL,NULL,,renal,renal_filtration,4,,SNOMED,517571000000104
-44802820,rrt_dose,Haemodialysis ultrafiltration rate,value_as_concept_id,mL/kg/h,9691,NULL,NULL,,renal,renal_filtration,4,,SNOMED,517631000000100
-44806798,ipap,inspiratory positive airway pressure (setting),value_as_number,cmH2O,4118138,NULL,NULL,,respiratory,ventilation,4,,SNOMED,814021000000102
-44807161,cam-icu,short confusion assessment method (CAM-ICU),value_as_concept_id,,,NULL,NULL,,neuro,delerium,3,,SNOMED,824471000000102
-45757782,rrt_blood_q,Haemodialysis blood flow rate,value_as_concept_id,mL/min,8795,NULL,NULL,,renal,renal_filtration,4,,SNOMED,401000124105
-45769787,rrt_replacement_q,Substitution flow rate (replacement fluid rate),value_as_concept_id,mL/h,44777613,NULL,NULL,,renal,renal_filtration,4,,SNOMED,708513005
-46235106,alt,Alanine aminotransferase [Enzymatic activity/volume] in Blood,value_as_number,IU/L,8923,>0,<2500,,labs,lfts,1,,LOINC,76625-3
-46235169,amylase,Amylase [Enzymatic activity/volume] in Blood,value_as_number,,,NULL,NULL,,labs,lfts,3,,LOINC,76630-3
-46235370,ldh,Lactate dehydrogenase in body fluid/Lactate dehydrogenase in serum,value_as_number,IU/L,8923,NULL,NULL,,labs,lfts,2,,LOINC,75639-5
-46236952,egfr,"Glomerular filtration rate/1.73 sq M.predicted [Volume Rate/Area] in Serum, Plasma or Blood by Creatinine-based formula (MDRD)",value_as_number,mL/min/1.73m^2,9117,>=0,<=90,,labs,renal,1,"adjustments are often made for different ethnicities. Please use the raw value given by the lab. Typically this is calculated using MDRD. Note MOST centers will cap at "">90"" in which case convert to numeric 90",LOINC,77147-7
+concept_id,short_name,long_name,target_column,units,units_concept_id,limits,fact_relationship,data_bundle,sub_bundle,order,comments,vocabulary_id,concept_code
+1023094,be_standard,Standard base excess,value_as_number,mmol/L,8753,"[-30, 30]",,point_of_care,derived,2,Base *excess* not deficit,LOINC,LP307350-1
+3000285,sodium,Sodium [Moles/volume] in Blood,value_as_number,micromol/L,8749,"[110, 180]",,labs,biochem,2,,LOINC,2947-0
+3000483,glucose_blood,blood glucose,value_as_number,mmol/L,8753,"[0, 60]",,labs,biochem,1,,LOINC,2339-0
+3000620,complement_c3,Complement C3 [Mass/volume] in Serum or Plasma,value_as_number,g/L,8636,"[0, 5]",,labs,immunology,2,,LOINC,4485-9
+3000963,hb,Hemoglobin [Mass/volume] in Blood,value_as_number,g/L,8636,"[0, 250]",,labs,haem,1,,LOINC,718-7
+3001110,alp,Alkaline phosphatase [Enzymatic activity/volume] in Blood,value_as_number,IU/L,8923,"[0, 5000]",,labs,lfts,2,,LOINC,1783-0
+3002385,rcdw,Erythrocyte distribution width [Ratio],value_as_number,%,8554,"[0, 80]",,labs,haem,2,,LOINC,30385-9
+3002400,iron,Iron [Mass/volume] in Serum or Plasma,value_as_number,g/L,8636,"[0, 0.01]",,labs,haem,4,,,
+3002529,blood_group_abo,ABO group [Type] in Blood,value_as_concept_id,,,,,haematology,,2,,LOINC,883-9
+3002582,urine_blood,Erythrocytes (blood) [#/volume] in Urine,value_as_number,cells/microL,8784,NULL,,urine,urine,3,"some systems use categories: ""+"", ""++"" etc. Please discuss with your lab and convert to the equivalent numeric value",LOINC,30391-7
+3003181,urine_na,urinary sodium (instantanious measure),value_as_number,mmol/L,8753,NULL,,urine,urine,3,,LOINC,2955-3
+3003310,blood_group_rhesus,Rh [Type] in Blood,value_as_concept_id,,,,,haematology,,2,,LOINC,10331-7
+3003338,mchc,mean cell haem conc. MCHC [Mass/volume],value_as_number,g/L,8636,"[0, 1000]",,labs,haem,2,,LOINC,28540-3
+3004789,transferrin,Transferrin [Mass/volume] in Serum or Plasma:,value_as_number,g/L,8636,"[0, 30]",,labs,haem,4,,,
+3005456,potassium,Potassium [Moles/volume] in Blood,value_as_number,mmol/L,8753,"[0, 10]",,labs,biochem,2,,LOINC,6298-4
+3007194,gcs_tot,GCS total,value_as_number,,,"[2, 15]",,vitals,neurological,1,,LOINC,9269-2
+3007220,ck,Creatine kinase [Enzymatic activity/volume] in Serum or Plasma,value_as_number,IU/L,8923,"[0, 800000]",,labs,cardiac,2,,LOINC,2157-6
+3007461,plts,Platelets [#/volume] in Blood,value_as_number,x10^9/L,44777588,"[0, 2500]",,labs,haem,1,,LOINC,26515-7
+3007930,methb,methaemoglobin,value_as_number,%,8554,"[0, 40]",,point_of_care,co-oximetry,3,,LOINC,2614-6
+3008116,urine_ket,Ketones [Moles/volume] in Urine by Test strip,value_as_number,mmol/L,8753,NULL,,urine,urine,3,"some systems use categories: ""+"", ""++"" etc. Please discuss with your lab and convert to the equivalent numeric value",LOINC,22702-5
+3008223,gcs_m,GCS - motor component,value_as_number,,,"[1, 6]",,vitals,neurological,2,,LOINC,9268-4
+3008770,urine_glu,Glucose [Moles/volume] in Urine by Test strip,value_as_number,mmol/L,8753,NULL,,urine,urine,3,"some systems use categories: ""+"", ""++"" etc. Please discuss with your lab and convert to the equivalent numeric value",LOINC,22705-8
+3009094,gcs_v,GCS - verbal component,value_as_number,,,"[1, 5]",,vitals,neurological,2,"Sometimes recorded at ""0"" or ""T"" if patient is intubated. Please omit in these cases.",LOINC,9270-0
+3009542,hct,Hematocrit [Volume Fraction] of Blood,value_as_number,L/L,44777604,"[0, 1]",,labs,haem,2,,LOINC,20570-8
+3010421,ph,pH - ABG / VBG / Capillary / RRT,value_as_number,pH,8482,"[6.75, 7.75]",,point_of_care,blood_gas,2,,LOINC,11558-4
+3010813,wcc_total,white cell count (Leukocytes [#/volume] in Blood),value_as_number,x10^9/L,44777588,"[0, 100]",,labs,haem,1,,LOINC,26464-8
+3011152,vit_b12,Cobalamin (Vitamin B12) [Mass/volume] in Blood,value_as_number,pg/mL,8845,"[0, Inf]",,labs,biochem,2,,LOINC,16695-9
+3011689,thb,total haemoglobin,value_as_number,g/L,8636,"[0, 260]",,point_of_care,co-oximetry,3,,LOINC,4536-9
+3011961,ferritin,Ferritin [Mass/volume] in Blood,value_as_number,ng/mL,8842,"[0, Inf]",,labs,haem,1,,LOINC,24373-3
+3013176,apttr,aPTT ratio (aPTT normal/actual in Platelet poor plasma by Coagulation assay),value_as_number,,,"[0, 6]",,labs,clotting,2,,LOINC,5899-0
+3013429,wcc_baso,Basophils [#/volume] in Blood by Automated count,value_as_number,x10^9/L,44777588,"[0, 30]",,labs,haem,2,,LOINC,704-7
+3013466,aptt,aPTT in Platelet poor plasma by Coagulation assay,value_as_number,seconds,8555,"[0, 200]",,labs,clotting,2,,LOINC,3173-2
+3013502,so2,SxO2 - ABG / VBG / Capillary / RRT,value_as_number,%,8554,"[0, 100]",,point_of_care,co-oximetry,2,,LOINC,20564-1
+3013721,ast,Aspartate aminotransferase [Enzymatic activity/volume] in Serum or Plasma,value_as_number,IU/L,8923,"[0, 5000]",,labs,lfts,2,,LOINC,1920-8
+3014835,uo,Urine output,value_as_number,L,8519,"[0, 10]",,fluid_balance,renal,2,should refer to the amount of urine produced since the last recording. Could be hourly if recorded as routine (ICU) or less commonly if patient voiding intermittently,LOINC,9188-4
+3015183,esr,eryhtrocyte sedimentation rate,value_as_number,mm/h,8752,"[0, 250]",,labs,inflammation,1,,LOINC,30341-2
+3015377,calcium_total,Calcium [Moles/volume] in Serum or Plasma,value_as_number,mmol/L,8753,"[0, 5]",,labs,biochem,2,"Some systems will have an ""adjusted calcium"" please note, this is the RAW total unionised calcium",LOINC,2000-8
+3016038,urine_k,urinary potassium (instantanious measure),value_as_number,mmol/L,8753,NULL,,urine,urine,3,,LOINC,2828-2
+3016293,hco3_standard,Standard bicarbonate - ABG / VBG / Capillary / RRT,value_as_number,mmol/L,8753,"[0, 80]",,point_of_care,derived,2,,LOINC,1963-8
+3016335,gcs_e,GCS - eye component,value_as_number,,,"[1, 4]",,vitals,neurological,2,,LOINC,9267-6
+3016407,fibrinogen,fibrinogen,value_as_number,g/L,8636,"[0, 15]",,labs,clotting,2,,LOINC,3255-7
+3017732,wcc_neut,Neutrophils [#/volume] in Blood,value_as_number,x10^9/L,44777588,NULL,,labs,haem,1,,LOINC,26499-4
+3017766,complement_c4,Complement C4 [Mass/volume] in Serum or Plasma,value_as_number,g/L,8636,"[0, 2]",,labs,immunology,2,,LOINC,4498-2
+3018095,urine_leu,Leukocytes [#/volume] in Urine,value_as_number,cells/microL,8784,NULL,,urine,urine,3,"some systems use categories: ""+"", ""++"" etc. Please discuss with your lab and convert to the equivalent numeric value",LOINC,30405-5
+3018572,chloride,Chloride [Moles/volume] in Blood,value_as_number,mmol/L,8753,"[60, 160]",,labs,biochem,2,,LOINC,2069-3
+3018913,phosphate,Phosphate [Moles/volume] in Blood,value_as_number,mmol/L,8753,"[0, 8]",,labs,biochem,3,,LOINC,24519-1
+3019198,wcc_lymp,Lymphocytes [#/volume] in Blood,value_as_number,x10^9/L,44777588,NULL,,labs,haem,1,,LOINC,26474-7
+3020059,calcium_corr,Calcium [Moles/volume] corrected for albumin in Serum or Plasma,value_as_number,mmol/L,8753,"[0, 5]",,labs,biochem,2,,LOINC,29265-6
+3020149,vit_d,Calcidiol [Mass/volume] in Serum or Plasma,value_as_number,nmol/L,8736,"[0, 500]",,labs,biochem,2,"active molecule of vitamin D pathway. Many centers may record different variants of this, so local correlation is required",LOINC,1989-3
+3020460,crp,C reactive protein [Mass/volume] in Serum or Plasma,value_as_number,mg/L,8751,"[0, 1000]",,labs,inflammation,1,,LOINC,1988-5
+3020564,creatinine,Creatinine,value_as_number,micromol/L,8749,"[0, 2000]",,labs,biochem,1,,LOINC,14682-9
+3020716,fio2,Inspired fraction of oxygen,value_as_number,ratio,8523,"[0.21, 1]",,vitals,respiratory,1,this is a FRACTION not a percentage,LOINC,3150-0
+3020779,urea,Urea [Moles/volume] in Serum or Plasma,value_as_number,mmol/L,8753,"[0, 80]",,labs,biochem,1,,LOINC,22664-7
+3021044,tibc,Iron binding capacity [Mass/volume] in Serum or Plasma,value_as_number,g/L,8636,"[0, 0.01]",,labs,haem,4,,,
+3021119,calcium_ion,Calcium.ionized [Moles/volume] in Blood,value_as_number,mmol/L,8753,"[0, 3]",,labs,biochem,2,,LOINC,1994-3
+3022621,urine_ph,urinary pH,value_as_number,pH,8482,NULL,,urine,urine,3,,LOINC,5803-2
+3023520,reticulocyte_count,Reticulocytes [#/volume] in Blood,value_as_number,,,"[0, 1000]",,labs,haem,2,,LOINC,14196-0
+3024561,albumin,Albumin [Mass/volume] in Serum or Plasma,value_as_number,g/L,8636,"[0, 70]",,labs,lfts,1,,LOINC,1751-7
+3024731,mcv,MCV [Entitic volume],value_as_number,femtoliter (fL),8583,"[0, 150]",,labs,haem,2,,LOINC,30428-7
+3025315,weight,Weight,value_as_number,Kg,9529,"[0, 300]",data origin,demographic,demographic,1,,LOINC,29463-7
+3025839,triglyceride,Triglyceride [Moles/volume] in Serum or Plasma,value_as_number,mmol/L,8753,"[0, 60]",,labs,covid,2,,LOINC,14927-8
+3026361,rcc,Erythrocytes [#/volume] in Blood,value_as_number,x10^12/L,8734,"[0, 10]",,labs,haem,2,,LOINC,26453-1
+3026493,urate,Urate [Moles/volume] in Serum or Plasma,value_as_number,,,"[0, 1200]",,labs,,3,,LOINC,14933-6
+3026782,urine_osmo,urine osmolality,value_as_number,mOsm/kg,8862,NULL,,urine,urine,3,,LOINC,2695-5
+3026910,ggt,Gamma glutamyl transferase [Enzymatic activity/volume] in Serum or Plasma,value_as_number,IU/L,8923,"[0, 10000]",,labs,lfts,3,,LOINC,2324-2
+3027801,po2,PxO2 - ABG / VBG / Capillary / RRT,value_as_number,kPa,44777602,"[0, 100]",,point_of_care,blood_gas,2,,LOINC,2703-7
+3027945,reticulocyte_percent,Reticulocytes/100 erythrocytes in Blood,value_as_number,%,8554,"[0, 60]",,labs,haem,2,,LOINC,4679-7
+3027946,pco2,PxCO2 - ABG / VBG / Capillary / RRT,value_as_number,kPa,44777602,"[0, 30]",,point_of_care,blood_gas,2,,LOINC,2019-8
+3028615,wcc_eosi,Eosinophils [#/volume] in Blood by Automated count,value_as_number,x10^9/L,44777588,"[0, 20]",,labs,haem,2,,LOINC,711-2
+3029435,nt_pro_bnp,Natriuretic peptide.B prohormone N-Terminal [Moles/volume] in Serum or Plasma,value_as_number,ng/L,8725,"[0, 100000]",,labs,cardiac,1,,LOINC,33763-4
+3032051,urine_uro,Urobilinogen [Moles/volume] in Urine by Test strip,value_as_number,mmol/L,8753,NULL,,urine,urine,3,,LOINC,34928-2
+3032080,inr,INR in Blood by Coagulation assay,value_as_number,seconds,8555,"[0, 12]",,labs,clotting,2,,LOINC,34714-6
+3033543,urine_sg,urine specific gravity,value_as_number,seconds,8555,NULL,,urine,urine,3,,LOINC,2965-2
+3033575,wcc_mono,Monocytes [#/volume] in Blood by Automated count,value_as_number,x10^9/L,44777588,NULL,,labs,haem,2,,LOINC,742-7
+3033745,troponin_i,Troponin I.cardiac [Mass/volume] in Blood,value_as_number,ng/L,8725,NULL,,labs,cardiac,1,,LOINC,42757-5
+3033836,magnesium,Magnesium [Moles/volume] in Blood,value_as_number,mmol/L,8753,"[0, 6]",,labs,biochem,3,,LOINC,2593-2
+3034426,pt,Prothrombin time (PT),value_as_number,seconds,8555,"[0, 150]",,labs,clotting,2,,LOINC,5902-2
+3035941,mch,MCH [Entitic mass],value_as_number,pg,8564,"[0, 85]",,labs,haem,2,,LOINC,28539-5
+3036277,height,Height,value_as_number,m,9546,"[0, 2.72]",data origin,demographic,demographic,1,,LOINC,8302-2
+3037121,urine_pro,Protein [Mass/volume] in Urine,value_as_number,g/L,8636,NULL,,urine,urine,3,"some systems use categories: ""+"", ""++"" etc. Please discuss with your lab and convert to the equivalent numeric value",LOINC,2888-6
+3041012,urine_bil,Bilirubin.total [Moles/volume] in Urine by Test strip,value_as_number,mmol/L,8753,NULL,,urine,urine,3,"some systems use categories: ""+"", ""++"" etc. Please discuss with your lab and convert to the equivalent numeric value",LOINC,41016-7
+3041084,wcc_immature_n,Immature granulocytes [#/volume] in Blood by Automated count,value_as_number,x10^9/L,44777588,"[0, 25]",,labs,haem,2,,LOINC,53115-2
+3042812,urine_nit,Nitrite [Presence] in Urine,value_as_concept_id,,,NULL,,urine,urine,3,,LOINC,32710-6
+3047181,lactate,Lactate [Moles/volume] in Blood,value_as_number,mmol/L,8753,"[0, 30]",,labs,biochem,2,,LOINC,32693-4
+3048529,troponin_t,Troponin T.cardiac [Mass/volume] in Blood,value_as_number,ng/L,8725,"[0, 10000]",,labs,cardiac,1,,LOINC,48425-3
+4009426,cholesterol_ldl,LDL cholesterol,value_as_number,mmol/L,8753,"[0, 10]",,labs,covid,2,,SNOMED,102739008
+4011133,cholesterol_hdl,HDL cholesterol,value_as_number,mmol/L,8753,"[0, 10]",,labs,covid,2,,SNOMED,102737005
+4066034,p_peak,peak inspiratory airway pressure (measured),value_as_number,cmH2O,4118138,NULL,,respiratory,ventilation,4,,SNOMED,17202005
+4087260,pef,Peak expiratory flow,value_as_number,,,"(0, 1000]",,respiratory,,2,,SNOMED,18491006
+4090193,fluid_output_tot,fluid output total,value_as_number,L,8519,"[0, 30]",,fluid_balance,renal,2,"total fluid output since the previous record. Could be for a single hour and reported each hour, but also respects areas of the hospital where this is done less frequently",SNOMED,251841007
+4092501,fluid_input_tot,fluid input total,value_as_number,L,8519,"[0, 30]",,fluid_balance,renal,2,"total fluid input since the previous record. Could be for a single hour and reported each hour, but also respects areas of the hospital where this is done less frequently",SNOMED,251852001
+4108138,rr_mand,Mandatory Respiratory Rate (setting),value_as_number,/min,8541,"[0, 100]",,respiratory,ventilation,4,Number of mandatory breathes given by the ventilator in 1 minute,SNOMED,250876000
+4108450,ie_ratio,inspiratory expiratory ratio (setting),value_as_number,,,"(0, 20]",,respiratory,ventilation,4,"If given in the form ""1:2"" convert to numeric 0.5",SNOMED,250822000
+4141684,o2_lpm,Delivered oxygen flow rate,value_as_number,L/min,8698,"[0, 15]",,vitals,respiratory,1,"this is a flow rate delivered to the patient, if using an oxygen device that does not determine by FiO2 (for example, a normal facemask)",SNOMED,427081008
+4151768,smoking_hx,Smoking history in pack years,value_as_number,,,NULL,,respiratory,smoking,2,A standardised convertion should be made to transform qualitative descriptions of smoking into pack years,SNOMED,315609007
+4152180,pt_position,patient position,value_as_concept_id,,,,,position,position,2,,SNOMED,271605009
+4152194,sbp,systolic blood pressure,value_as_number,mmHg,8876,"(0, 300]",location of measure,vitals,cardiac,1,,SNOMED,271649006
+4154772,rr_spont,Spontaneous Respiratory Rate (measured),value_as_number,/min,8541,"[0, 100]",,respiratory,ventilation,4,The number of breathes taken by an individual spontenously in 1 minute while on a ventilator,SNOMED,271625008
+4154790,dbp,diastolic blood pressure,value_as_number,mmHg,8876,"(0, 200]",location of measure,cardiac,cardiac,2,,SNOMED,271650006
+4176265,fvc_vol,forced vital capacity (actual volume),value_as_number,,,"[0, 6]",,respiratory,,2,,SNOMED,50834005
+4177991,bristol_stool,bowel motion graded as bristol stool,value_as_number,,,"[1, 7]",,gastro,gastro,3,,SNOMED,428208009
+4183713,airway,airway device,value_as_concept_id,,,,,respiratory,oxygenation,2,,SNOMED,43725001
+4196583,fev1_fvc,FEV1/FVC percent,value_as_number,%,8554,,,,,2,,SNOMED,313222007
+4199405,cholesterol_tot,Total cholesterol,value_as_number,mmol/L,8753,"[0, 25]",,labs,covid,2,,SNOMED,301860006
+4208972,fev1_pred,forced expiratory volume in 1 second (percentage predicted),value_as_number,%,8554,"[0, Inf]",,respiratory,,2,,SNOMED,313223002
+4215838,ps,Pressure support (setting),value_as_number,cmH2O,4118138,"[0, 80]",,respiratory,ventilation,2,,SNOMED,417071008
+4216746,peep,Positive End Expiratory Pressure (PEEP) (setting),value_as_number,cmH2O,4118138,"[0, 80]",,respiratory,ventilation,2,,SNOMED,416595007
+4220163,vol_tidal,tidal volume setting,value_as_number,mL,8587,"[0, 6000]",,respiratory,ventilation,2,,SNOMED,416811008
+4221102,co,cardiac output,value_as_number,L/min,8698,"[0, 35]",,cardiac,cardiac,3,,SNOMED,82799009
+4222965,oxygen_del_device,oxygen delivery device,value_as_concept_id,,,,,respiratory,oxygenation,2,,SNOMED,336589003
+4230167,vent_mode,ventilator mode,value_as_concept_id,,,,,respiratory,ventilation,2,,SNOMED,40617009
+4238443,rhythm,heart rhythm,value_as_concept_id,,,,,cardiac,cardiac,2,,SNOMED,364073003
+4239021,map,Mean arterial blood pressure,value_as_number,mmHg,8876,"[0, 300]",location of measure,cardiac,cardiac,1,,SNOMED,6797001
+4239408,hr,heart rate,value_as_number,/min,8541,"[0, 350]",,vitals,cardiac,1,,SNOMED,364075005
+4241837,fev1_vol,forced expiratory volume in 1 second (actual volume),value_as_number,,,"[0, 8]",,respiratory,,2,,SNOMED,59328004
+4269997,smoking_quant,Current smoking activity,value_as_concept_id,,,,,respiratory,smoking,2,,SNOMED,365982000
+4275495,smoking_status,Smoking Status,value_as_concept_id,,,,,respiratory,smoking,2,,SNOMED,365981007
+4287648,tep,Treatment escalation plan (incuding DNAR),value_as_concept_id,,,,,process_of_care,treatment_limitations,2,,SNOMED,397608007
+4302666,temp,body temperature,value_as_number,degrees Celsius,586323,"[10, 45]",location of measure,vitals,infection,1,,SNOMED,386725007
+4313591,rr,respiratory rate,value_as_number,/min,8541,"[0, 120]",,vitals,respiratory,1,,SNOMED,86290005
+4321758,hhb,reduced/deoxy haemoglobin,value_as_number,%,8554,"[0, 100]",,point_of_care,co-oximetry,3,,SNOMED,9865006
+4353621,mv,Minute volume (measured),value_as_number,L,8519,"[0, 160]",,respiratory,ventilation,2,,SNOMED,250811004
+4353622,t_exp,expiratory time (Te) (setting),value_as_number,seconds,8555,NULL,,respiratory,ventilation,4,,SNOMED,250820008
+4353623,t_insp_pause,inspiratory time pause (setting),value_as_number,seconds,8555,NULL,,respiratory,ventilation,4,,SNOMED,250821007
+4353938,etco2,End tidal carbon dioxide,value_as_number,%,8554,"[0, 16]",,respiratory,ventilation,4,,SNOMED,250784008
+4353947,t_insp,inspiratory time (Ti) (setting),value_as_number,seconds,8555,NULL,,respiratory,ventilation,4,,SNOMED,250819002
+21490675,cvp,Central venous pressure,value_as_number,cmH2O,4118138,"[0, 50]",,cardiac,cardiac,3,,LOINC,60985-9
+36684829,rass,richmond agitation and sedation score,value_as_number,,,"[-5, 4]",,sedation,sedation,2,,SNOMED,457441000124102
+37018292,rrt_mode,renal replacement therapy mode,value_as_concept_id,,,,,renal,renal_filtration,2,,SNOMED,714749008
+37208354,news2_total,National Early Warning Score version 2 (total score),value_as_number,,,"[0, 21]",,vitals,vitals,1,,SNOMED,1104061000000103
+37208374,news2_rr,National Early Warning Score version 2 (respiratory rate score),value_as_number,,,"[0, 3]",,vitals,vitals,1,,SNOMED,1104301000000104
+37208375,news2_oxy_scale1,National Early Warning Score version 2 (oxygenation score - scale 1),value_as_number,,,"[0, 3]",,vitals,vitals,1,,SNOMED,1104311000000102
+37208376,news2_oxy_scale2,National Early Warning Score version 2 (oxygenation score - scale 2),value_as_number,,,"[0, 3]",,vitals,vitals,1,,SNOMED,1104321000000108
+37208377,news_2_oxy_air,National Early Warning Score version 2 (oxygen or air score),value_as_number,,,"[0, 3]",,vitals,vitals,1,,SNOMED,1104331000000105
+37208378,news2_sbp,National Early Warning Score version 2 (systolic blood pressure score),value_as_number,,,"[0, 3]",,vitals,vitals,1,,SNOMED,1104341000000101
+37208379,news2_hr,National Early Warning Score version 2 (heart rate score),value_as_number,,,"[0, 3]",,vitals,vitals,1,,SNOMED,1104351000000103
+37208380,news2_brain,National Early Warning Score version 2 (consciousness score),value_as_number,,,"[0, 3]",,vitals,vitals,1,,SNOMED,1104361000000100
+37208381,news2_temp,National Early Warning Score version 2 (temperature score),value_as_number,,,"[0, 3]",,vitals,vitals,1,,SNOMED,1104371000000107
+37208386,acvpu,acvpu,value_as_concept_id,,,,,vitals,neurological,1,,SNOMED,1104421000000100
+37310255,covid_pcr_test,Detection of 2019 novel coronavirus using polymerase chain reaction technique,value_as_concept_id,,,,,covid,covid,1,The datetime should refer to time of resulting. A separate specimen can be recorded and linked whcih references the datetime of sample collection,SNOMED,1240511000000106
+37392971,pct,Procalcitonin,value_as_number,ng/mL,8842,"[0, 100]",,labs,inflammation,1,,SNOMED,1010991000000108
+40482503,fvc_pred,forced vital capacity (percentage predicted),value_as_number,%,8554,,,respiratory,,2,,SNOMED,445210000
+40483383,cfs,Canadian Study of Health and Aging clinical frailty scale,value_as_number,,,"[1, 9]",,,,2,Also known as the Rockwood clinicial frailty score,SNOMED,445414007
+40757494,bilirubin_tot,Bilirubin total [Moles/volume] in Blood,value_as_number,micromol/L,8749,"[0, 1000]",,labs,lfts,2,,LOINC,54363-7
+40762499,spo2,SpO2,value_as_number,%,8554,"[0, 100]",,vitals,respiratory,1,peripheral,LOINC,59408-5
+40776165,cohb,carboxyhaemoglobin,value_as_number,%,8554,"[0, 25]",,point_of_care,co-oximetry,3,,LOINC,LP21418-6
+40785907,d_dimer,Fibrin D Dimers,value_as_number,ng/mL,8842,"[0, 100000]",,labs,clotting,1,,LOINC,LP15987-8
+42869452,wcc_immature_perc,Immature granulocytes/100 leukocytes in Blood by Automated count,value_as_number,%,8554,"[0, 100]",,labs,haem,2,,LOINC,71695-1
+44782824,p_mean,mean inspiratory airway pressure (measured),value_as_number,cmH2O,4118138,,,respiratory,ventilation,4,,SNOMED,698821009
+44782825,p_plat,airway plateau pressure (measured),value_as_number,cmH2O,4118138,,,respiratory,ventilation,4,,SNOMED,698822002
+44802815,rrt_dialysate_q,Dialysate flow rate,value_as_concept_id,mL/h,44777613,,,renal,renal_filtration,4,,SNOMED,517571000000104
+44802820,rrt_dose,Haemodialysis ultrafiltration rate,value_as_concept_id,mL/kg/h,9691,,,renal,renal_filtration,4,,SNOMED,517631000000100
+44806798,ipap,inspiratory positive airway pressure (setting),value_as_number,cmH2O,4118138,,,respiratory,ventilation,4,,SNOMED,814021000000102
+44807161,cam-icu,short confusion assessment method (CAM-ICU),value_as_concept_id,,,,,neuro,delerium,3,,SNOMED,824471000000102
+45757782,rrt_blood_q,Haemodialysis blood flow rate,value_as_number,mL/min,8795,,,renal,renal_filtration,4,,SNOMED,401000124105
+45769787,rrt_replacement_q,Substitution flow rate (replacement fluid rate),value_as_number,mL/h,44777613,,,renal,renal_filtration,4,,SNOMED,708513005
+46235106,alt,Alanine aminotransferase [Enzymatic activity/volume] in Blood,value_as_number,IU/L,8923,"[0, 2500]",,labs,lfts,1,,LOINC,76625-3
+46235169,amylase,Amylase [Enzymatic activity/volume] in Blood,value_as_number,,,"[0, 6000]",,labs,lfts,3,,LOINC,76630-3
+46235370,ldh,Lactate dehydrogenase in body fluid/Lactate dehydrogenase in serum,value_as_number,IU/L,8923,"[0, 15000]",,labs,lfts,2,,LOINC,75639-5
+46236952,egfr,"Glomerular filtration rate/1.73 sq M.predicted [Volume Rate/Area] in Serum, Plasma or Blood by Creatinine-based formula (MDRD)",value_as_number,mL/min/1.73m^2,9117,"[0, 90]",,labs,renal,1,"adjustments are often made for different ethnicities. Please use the raw value given by the lab. Typically this is calculated using MDRD. Note MOST centers will cap at "">90"" in which case convert to numeric 90",LOINC,77147-7
