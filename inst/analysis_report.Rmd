@@ -577,7 +577,10 @@ tm <- bind_rows(caps, care_site_t) %>%
 
 tm <- markovchain::markovchainFit(tm, confint = FALSE)
 
-loc_order <- c("External (Pt Home)", "External (Pt Other)", cs$concept_name, "Died")
+loc_order <- c("External (Pt Home)",
+               "External (Pt Other)",
+               unique(cs$concept_name),
+               "Died")
 
 tm_fit <- as_tibble(tm$estimate@transitionMatrix) %>%
   tibble::add_column(source = rownames(tm$estimate@transitionMatrix), .before = TRUE) %>%
