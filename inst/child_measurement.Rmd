@@ -40,16 +40,16 @@ Operators in use is/are: `r operator_units`.
 
 ```{r}
 working <- left_join(
-  working,
+  working %>%
+    select(
+      measurement_id,
+      measurement_datetime,
+      value_as_number,
+      value_as_concept_id,
+      visit_occurrence_id),
   st[["visit_occurrence"]] %>%
       select(visit_occurrence_id, visit_start_datetime, visit_end_datetime),
-      select(
-        measurement_id,
-        measurement_datetime,
-        value_as_number,
-        value_as_concept_id,
-        visit_occurrence_id),
-    by = "visit_occurrence_id")
+  by = "visit_occurrence_id")
 ```
 
 ```{r}

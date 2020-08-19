@@ -1,6 +1,6 @@
 ```{r}
 current_concept <- {{x}}
-current_name <- meas_dq$long_name[meas_dq$concept_id == current_concept]
+current_name <- meas_dq$concept_name[meas_dq$concept_id == current_concept]
 target_col <- meas_dq$target_column[meas_dq$concept_id == current_concept]
 
 curr_title <- stringr::str_sub(current_name, 1, 30)
