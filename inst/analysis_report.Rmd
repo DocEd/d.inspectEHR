@@ -661,16 +661,22 @@ meas <- tbl(ctn, in_schema(schema, "measurement")) %>%
   collect() %>%
   mutate(across(everything(), as.integer))
 
+# Measurements that are in the roadmap & the DB
 meas_in_ref <- meas$measurement_concept_id[meas$measurement_concept_id %in% dq_ref$concept_id]
+
+# Measurements that are not in the roadmap but appear in the DB
 meas_nin_ref <- meas$measurement_concept_id[!(meas$measurement_concept_id %in% dq_ref$concept_id)]
+
+# Measurements that appear in the DB, but are not in the roadmap
 meas_out <- dq_ref$concept_id[!(dq_ref$concept_id %in% meas$measurement_concept_id)]
+
+meas_all <- sort(unique(c(meas_in_ref, meas_nin_ref, meas_out)))
 
 dq_ref %>%
   mutate(
     status = case_when(
       concept_id %in% meas_in_ref ~ "Onboarded",
-      concept_id %in% meas_out ~ "Pending",
-      concept_id %in% meas_nin_ref ~ "Item not on roadmap"
+      concept_id %in% meas_out ~ "Pending"
   )) %>%
   select(concept_id, short_name, status) %>%
   arrange(concept_id) %>%
@@ -706,7 +712,15 @@ meas_units <-  tbl(ctn, in_schema(schema, "measurement")) %>%
   pull() %>%
   as.integer()
 
-meas_dict <- mini_dict(ctn, schema, meas_units)
+meas_operator <-  tbl(ctn, in_schema(schema, "measurement")) %>%
+  distinct(.data$operator_concept_id) %>%
+  collect() %>%
+  pull() %>%
+  as.integer()
+
+meas_dict1 <- mini_dict(ctn, schema, meas_units)
+meas_dict2 <- mini_dict(ctn, schema, meas_operator)
+meas_dict <- bind_rows(meas_dict1, meas_dict2)
 
 rmd <- meas_dq$concept_id %>%
   purrr::map(
