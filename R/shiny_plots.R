@@ -5,23 +5,24 @@
 #' @importFrom tidyr pivot_longer
 #' @importFrom tidyselect contains everything
 #' @importFrom tibble add_column
-person_plot_one <- renderPlot({
-  p %>%
-    group_by(gender_concept_id) %>%
-    tally() %>%
-    ggplot(aes(x = gender_concept_id)) +
-    geom_point(aes(y = n)) +
-        geom_segment(aes(
-          y = 0,
-          yend = n,
-          xend = gender_concept_id)) +
-    theme_classic() +
-    labs(y = "count", x = "categories") +
-    theme(
-      plot.title.position = "plot",
-      axis.title.y = element_blank()) +
-    coord_flip() +
-    ggtitle("Sex distribution")
+shiny_sex <- renderPlot({
+  plot_sex(p)
+  # p %>%
+  #   group_by(gender_concept_id) %>%
+  #   tally() %>%
+  #   ggplot(aes(x = gender_concept_id)) +
+  #   geom_point(aes(y = n)) +
+  #       geom_segment(aes(
+  #         y = 0,
+  #         yend = n,
+  #         xend = gender_concept_id)) +
+  #   theme_classic() +
+  #   labs(y = "count", x = "categories") +
+  #   theme(
+  #     plot.title.position = "plot",
+  #     axis.title.y = element_blank()) +
+  #   coord_flip() +
+  #   ggtitle("Sex distribution")
 })
 
 person_plot_two <- renderPlot({
@@ -104,7 +105,7 @@ discharge_to <- renderPlot({
     mutate(discharge_to_concept_id = fct_infreq(as.factor(discharge_to_concept_id))) %>%
     group_by(discharge_to_concept_id) %>%
     tally()
-  
+
   vos %>%
     ggplot(aes(x = discharge_to_concept_id)) +
     geom_point(aes(y = n)) +
@@ -151,9 +152,9 @@ res_adm_plot <- renderPlot({
         TRUE ~ as.numeric(NA)
         )) %>%
     select(person_id, outcome, los) %>%
-    filter(!is.na(los)) 
+    filter(!is.na(los))
 
-  ggplot(data = out_df, aes(x = los)) + 
+  ggplot(data = out_df, aes(x = los)) +
     geom_density() +
     theme_classic() +
     labs(x = "length of stay (days)")
@@ -186,9 +187,9 @@ visit_detail_transition_plot <- renderPlot({
     arrange(visit_detail_start_datetime) %>%
     split(.$visit_occurrence_id) %>%
     map(function(x) x$care_site_id)
-  
+
   x <- markovchainFit(care_site_t)
-  
+
   as_tibble(x$estimate@transitionMatrix) %>%
     add_column(source = rownames(x$estimate@transitionMatrix), .before = TRUE) %>%
     pivot_longer(-source) %>%

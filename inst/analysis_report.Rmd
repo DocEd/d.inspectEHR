@@ -539,69 +539,27 @@ The following is a transition matrix of moves within the visit_detail, fit under
 It does not consider transitions as a function of time spent in any location.
 
 ```{r transition-matrix}
-vd <- overview %>%
-  filter(visit_concept_id == "Emergency Room and Inpatient Visit") %>%
-  left_join(st[["visit_detail"]] %>%
-    select(visit_detail_id,
-           visit_occurrence_id,
-           visit_detail_start_datetime,
-           visit_detail_end_datetime,
-           care_site_id), by = "visit_occurrence_id")
-
-caps <- vd %>%
-  group_by(visit_occurrence_id) %>%
-  summarise(
-    admit = unique(admitting_source_concept_id),
-    discharge = unique(discharge_to_concept_id)
-  ) %>%
-  mutate(
-    admit = if_else(admit == "Home", "External (Pt Home)", "External (Pt Other)"),
-    discharge = case_when(
-      discharge == "Patient died" ~ "Died",
-      discharge == "Home" ~ "External (Pt Home)",
-      !is.na(discharge) ~ "External (Pt Other)",
-      TRUE ~ NA_character_)
-  ) %>%
-  tidyr::pivot_longer(cols = admit:discharge, names_to = "ord", values_to = "care_site_id")
-
-care_site_t <- vd %>%
-  arrange(visit_detail_start_datetime) %>%
-  select(visit_occurrence_id, care_site_id) %>%
-  group_by(visit_occurrence_id) %>%
-  mutate(ord = paste0("b", stringr::str_pad(1:n(), width = 3, pad = "0")))
-
-tm <- bind_rows(caps, care_site_t) %>%
-  arrange(visit_occurrence_id, ord) %>%
-  split(.$visit_occurrence_id) %>%
-  map(function(x) x$care_site_id)
-
-tm <- markovchain::markovchainFit(tm, confint = FALSE)
+cs <- tbl(ctn, in_schema(schema, "care_site")) %>%
+  collect()
 
 loc_order <- c("External (Pt Home)",
                "External (Pt Other)",
-               unique(cs$concept_name),
+               unique(cs$care_site_name),
                "Died")
 
-tm_fit <- as_tibble(tm$estimate@transitionMatrix) %>%
-  tibble::add_column(source = rownames(tm$estimate@transitionMatrix), .before = TRUE) %>%
-  pivot_longer(-contains("source"), names_to = "destination", values_to = "value") %>%
-  mutate(across(c("source", "destination"), factor, levels = loc_order))
-
-tm_fit %>%
-  ggplot(aes(y = source, x = destination)) +
-  geom_tile(aes(fill = value)) +
-  geom_text(aes(label = round(value, 2)), colour = "white") +
-  theme_minimal() +
-  theme(
-    plot.title.position = "plot",
-    panel.grid.major = element_blank(),
-    legend.position = "none",
-    axis.text.x = element_text(angle = 35, hjust = 1)) +
-  scale_fill_viridis_c() +
-  ggtitle("Transition Matrix for Internal Hospital Movements")
+tm <- transition_matrix(overview, st, possible_states = loc_order)
+plot_tm(tm, loc_order)
 ```
 
 ```{r illegal-moves1}
+tm_fit <- as_tibble(tm$estimate@transitionMatrix) %>%
+    tibble::add_column(
+      source = rownames(tm$estimate@transitionMatrix), .before = TRUE) %>%
+    pivot_longer(-contains("source"),
+                 names_to = "destination",
+                 values_to = "value") %>%
+    mutate(across(c("source", "destination"), factor, levels = loc_order))
+
 tm_fit %>%
   filter(source == destination, value > 0) %>%
   gt()
@@ -671,17 +629,21 @@ meas_nin_ref <- meas$measurement_concept_id[!(meas$measurement_concept_id %in% d
 meas_out <- dq_ref$concept_id[!(dq_ref$concept_id %in% meas$measurement_concept_id)]
 
 meas_all <- sort(unique(c(meas_in_ref, meas_nin_ref, meas_out)))
+meas_all <- mini_dict(ctn, schema, meas_all)
 
-dq_ref %>%
+meas_all <- meas_all %>%
   mutate(
     status = case_when(
       concept_id %in% meas_in_ref ~ "Onboarded",
-      concept_id %in% meas_out ~ "Pending"
+      concept_id %in% meas_out ~ "Pending",
+      concept_id %in% meas_nin_ref ~ "Not in roadmap"
   )) %>%
-  select(concept_id, short_name, status) %>%
+  select(concept_id, concept_name, status) %>%
   arrange(concept_id) %>%
   left_join(meas, by = c("concept_id" = "measurement_concept_id")) %>%
-  mutate(n = if_else(is.na(n), 0L, n)) %>%
+  mutate(n = if_else(is.na(n), 0L, n))
+
+meas_all %>%
   gt() %>%
   tab_style(
     style = cell_fill(color = "red1", alpha = 0.5),
@@ -702,33 +664,33 @@ Error codes:
 
 
 ```{r measurements2}
-meas_dq <- dq_ref %>%
-  filter(concept_id %in% meas$measurement_concept_id) %>%
-  select(concept_id, long_name, target_column)
+meas_dq <- meas_all %>%
+  left_join(dq_ref[,c("concept_id", "short_name", "target_column",
+                      "units_concept_id", "limits")],
+            by = "concept_id")
 
-meas_units <-  tbl(ctn, in_schema(schema, "measurement")) %>%
-  distinct(.data$unit_concept_id) %>%
-  collect() %>%
-  pull() %>%
-  as.integer()
+rmd <- vector(mode = "list", length = nrow(meas_dq))
 
-meas_operator <-  tbl(ctn, in_schema(schema, "measurement")) %>%
-  distinct(.data$operator_concept_id) %>%
-  collect() %>%
-  pull() %>%
-  as.integer()
+for (i in seq_along(meas_dq$concept_id)) {
+  if (meas_dq$status[i] == "Onboarded") {
+      rmd[[i]] <- knitr::knit_expand("child_measurement.Rmd",
+                                 x = meas_dq$concept_id[i])
+  } else if (meas_dq$status[i] == "Pending") {
+      rmd[[i]] <- knitr::knit_expand("child_pending.Rmd",
+                                 x = meas_dq$concept_id[i])
+  } else {
+      rmd[[i]] <- knitr::knit_expand("child_off_roadmap.Rmd",
+                                 x = meas_dq$concept_id[i])
+  }
 
-meas_dict1 <- mini_dict(ctn, schema, meas_units)
-meas_dict2 <- mini_dict(ctn, schema, meas_operator)
-meas_dict <- bind_rows(meas_dict1, meas_dict2)
+}
 
-rmd <- meas_dq$concept_id %>%
-  purrr::map(
-    ~ knitr::knit_expand("child_measurement.Rmd", x = .x)
-  )
+# rmd <- meas_dq$concept_id %>%
+#   purrr::map(
+#     ~ knitr::knit_expand("child_measurement.Rmd", x = .x)
+#   )
 
 rmd <- paste(rmd, collapse = "\n")
-#cat(rmd)
 ```
 
 ```{r results = "asis"}

@@ -1,6 +1,6 @@
 ```{r}
 current_concept <- {{x}}
-current_name <- meas_dq$long_name[meas_dq$concept_id == current_concept]
+current_name <- meas_dq$concept_name[meas_dq$concept_id == current_concept]
 target_col <- meas_dq$target_column[meas_dq$concept_id == current_concept]
 
 curr_title <- stringr::str_sub(current_name, 1, 30)
@@ -19,17 +19,24 @@ working <- tbl(ctn, in_schema(schema, "measurement")) %>%
   mutate(across(where(is.integer64), as.integer)) %>%
   mutate(across(c(contains("date"), -contains("datetime")), as.Date))
 
-working_unit <- meas_dict %>%
-  filter(concept_id %in% unique(working$unit_concept_id))
+working_units <- unique(working$unit_concept_id)
+working_operator <- unique(working$operator_concept_id)
 
-single_units <- nrow(working_unit) == 1
-label_units <- working_unit[1,"concept_name",drop = TRUE]
+working_units_dict <- mini_dict(ctn, schema, na.omit(working_units))
+working_operator_dict <- mini_dict(ctn, schema, na.omit(working_operator))
+
+single_units <- length(working_units) == 1
+label_units <- paste0(working_units_dict$concept_name, collapse = ", ")
+operator_units <- paste0(working_operator_dict$concept_name, collapse = ", ")
+
 measure_n <- nrow(working)
 ```
 
-Concept is contributed in only 1 type of unit: `r single_units`.
+Concept units are of one type only: `r single_units`.
 
-Primary unit in use is: `r label_units`.
+Unit in use is/are: `r label_units`.
+
+Operators in use is/are: `r operator_units`.
 
 ```{r}
 working <- left_join(

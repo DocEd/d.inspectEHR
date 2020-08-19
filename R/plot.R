@@ -122,6 +122,49 @@ plot_visit_profile <- function(x) {
     ggtitle("Admission profile by type of admission")
 }
 
+
+
+#' Plot Transition Matrix
+#'
+#' @param tm a transition matrix from \code{\link{transition_matrix}}
+#' @param possible_states a character vector of the possible states to be used
+#'   in the markov chain fitting process
+#'
+#' @importFrom tibble as_tibble add_column
+#' @importFrom tidyr pivot_longer
+#' @importFrom dplyr mutate across
+#' @importFrom ggplot2 ggplot aes geom_tile geom_text theme scale_fill_viridis_c
+#'   ggtitle
+#' @importFrom magrittr %>%
+#'
+#' @return
+#' @export
+#'
+#' @examples
+plot_tm <- function(tm, possible_states) {
+
+  tm_fit <- as_tibble(tm$estimate@transitionMatrix) %>%
+    add_column(
+      source = rownames(tm$estimate@transitionMatrix), .before = TRUE) %>%
+    pivot_longer(-contains("source"),
+                 names_to = "destination",
+                 values_to = "value") %>%
+    mutate(across(c("source", "destination"), factor, levels = possible_states))
+
+  tm_fit %>%
+    ggplot(aes(y = source, x = destination)) +
+    geom_tile(aes(fill = value)) +
+    geom_text(aes(label = round(value, 2)), colour = "white") +
+    theme_d() +
+    theme(
+      plot.title.position = "plot",
+      panel.grid.major = element_blank(),
+      legend.position = "none",
+      axis.text.x = element_text(angle = 35, hjust = 1)) +
+    scale_fill_viridis_c() +
+    ggtitle("Transition Matrix for Internal Hospital Movements")
+}
+
 #' DECOVID Plot Theme
 #'
 #' @param ... arguments to pass to \code{theme}
@@ -145,3 +188,6 @@ theme_d <- function(...) {
       axis.line = element_blank(),
       panel.grid = element_blank())
 }
+
+
+

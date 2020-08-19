@@ -6,7 +6,7 @@ server <- function(input, output, session) {
   output$ref_integrity <- ref_integrity
 
   # person table plots
-  output$person_plot_one <- plot_sex
+  output$plot_sex <- shiny_sex
   output$person_plot_two <- person_plot_two
   output$person_plot_three <- person_plot_three
 
