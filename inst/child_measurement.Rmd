@@ -64,9 +64,16 @@ boundaries <- working %>%
 # Duplications
 dup <- working %>%
   select(.data$person_id, .data$measurement_datetime, .data[[target_col]]) %>%
-  janitor::get_dupes(everything()) %>%
-  tally(name = "count") %>%
-  tibble::add_column(condition = "duplications", .before = TRUE)
+  add_count(
+    .data$person_id, .data$measurement_datetime, .data[[target_col]],
+    name = "dupe_count") %>% 
+  filter(dupe_count > 1) %>%
+  nrow()
+
+dup <- tibble::tribble(
+  ~condition, ~count,
+  "duplications", dup
+)
 
 miss <- tibble::tribble(
   ~condition, ~count,
