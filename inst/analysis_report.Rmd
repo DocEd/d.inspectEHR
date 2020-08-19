@@ -673,14 +673,14 @@ rmd <- vector(mode = "list", length = nrow(meas_dq))
 
 for (i in seq_along(meas_dq$concept_id)) {
   if (meas_dq$status[i] == "Onboarded") {
-      rmd[[i]] <- knitr::knit_expand("child_measurement.Rmd",
-                                 x = meas_dq$concept_id[i])
+      rmd[[i]] <- try(knitr::knit_expand("child_measurement.Rmd",
+                                 x = meas_dq$concept_id[i]))
   } else if (meas_dq$status[i] == "Pending") {
-      rmd[[i]] <- knitr::knit_expand("child_pending.Rmd",
-                                 x = meas_dq$concept_id[i])
+      rmd[[i]] <- try(knitr::knit_expand("child_pending.Rmd",
+                                 x = meas_dq$concept_id[i]))
   } else {
-      rmd[[i]] <- knitr::knit_expand("child_off_roadmap.Rmd",
-                                 x = meas_dq$concept_id[i])
+      rmd[[i]] <- try(knitr::knit_expand("child_off_roadmap.Rmd",
+                                 x = meas_dq$concept_id[i]))
   }
 
 }
