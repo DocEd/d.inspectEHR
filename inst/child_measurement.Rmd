@@ -44,6 +44,7 @@ working <- left_join(
     select(
       person_id,
       measurement_id,
+      measurement_date,
       measurement_datetime,
       value_as_number,
       value_as_concept_id,
