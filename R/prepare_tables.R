@@ -122,23 +122,21 @@ prepare_overview <- function(x) {
 #' @export
 #'
 #' @examples
-prepare_tally <- function(ctn, schema) {
+prepare_tally <- function(ctn, schema,
+                          tbl_names = c(
+                                        "person",
+                                        "specimen",
+                                        "death",
+                                        "visit_occurrence",
+                                        "visit_detail",
+                                        "procedure_occurrence",
+                                        "drug_exposure",
+                                        "device_exposure",
+                                        "condition_occurrence",
+                                        "measurement",
+                                        "observation")) {
 
-  clinical_tbls <- tibble(
-    table = c(
-      "person",
-      "specimen",
-      "death",
-      "visit_occurrence",
-      "visit_detail",
-      "procedure_occurrence",
-      "drug_exposure",
-      "device_exposure",
-      "condition_occurrence",
-      "measurement",
-      "observation"
-    )
-  )
+  clinical_tbls <- tibble(table = tbl_names)
 
   ttally <- clinical_tbls$table %>%
     map_int(~ tbl(ctn, in_schema(schema, .)) %>%

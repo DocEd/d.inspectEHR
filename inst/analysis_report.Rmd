@@ -89,6 +89,11 @@ Row counts for core clinical tables:
 ```{r row-counts}
 clinical_tbls <- prepare_tally(ctn, schema)
 
+zero_vals <- clinical_tbls %>%
+  filter(n == 0) %>%
+  select(table) %>%
+  pull()
+
 clinical_tbls %>%
   arrange(table) %>%
   gt() %>%
@@ -114,13 +119,19 @@ st %>%
 ## Person Table
 
 ```{r ages}
-age_plot <- plot_age(overview)
-check_age <- min(overview$age, na.rm = TRUE) >= 18
+if ("person" %in% zero_vals) {
+  cat("There is no data in the person table")
+} else {
+  age_plot <- plot_age(overview)
+  check_age <- min(overview$age, na.rm = TRUE) >= 18
 
-sex_plot <- plot_sex(st[["person"]])
-ethnic_plot <- plot_ethnicity(st[["person"]])
+  sex_plot <- plot_sex(st[["person"]])
+  ethnic_plot <- plot_ethnicity(st[["person"]])
 
-age_plot + sex_plot + ethnic_plot
+  age_plot + sex_plot + ethnic_plot
+}
+
+
 ```
 
 Madatory checks
@@ -132,28 +143,34 @@ Madatory checks
 Date boundaries of the cohort:
 
 ```{r cohort-boundaries, echo=FALSE, warning=FALSE}
-st[["visit_occurrence"]] %>%
-  prepare_cohort_boundaries() %>%
-  gt() %>%
-  tab_style(
-    style = cell_fill(color = "red1", alpha = 0.5),
-    locations = cells_body(
-      rows = tolerance == "fail")
-  ) %>%
-  tab_options(table.width = pct(100))
+if ("visit_occurrence" %in% zero_vals) {
+  cat("There is no data in the visit_occurrence table")
+} else {
+  st[["visit_occurrence"]] %>%
+    prepare_cohort_boundaries() %>%
+    gt() %>%
+    tab_style(
+      style = cell_fill(color = "red1", alpha = 0.5),
+      locations = cells_body(
+        rows = tolerance == "fail")
+    ) %>%
+    tab_options(table.width = pct(100))
+}
 ```
 
 Number of visits stratified by visit type:
 
 ```{r visit-types}
-st[["visit_occurrence"]] %>%
-  group_by(visit_concept_id) %>%
-  summarise(
-    count = n(),
-    percentage = round((n()/nrow(st[["visit_occurrence"]]))*100, 0)
-  ) %>%
-  gt() %>%
-  tab_options(table.width = pct(100))
+if (!("visit_occurrence" %in% zero_vals)) {
+  st[["visit_occurrence"]] %>%
+    group_by(visit_concept_id) %>%
+    summarise(
+      count = n(),
+      percentage = round((n()/nrow(st[["visit_occurrence"]]))*100, 0)
+    ) %>%
+    gt() %>%
+    tab_options(table.width = pct(100))
+}
 ```
 
 ```{r visit-profile}
@@ -703,23 +720,27 @@ cat(rendered, sep = "\n")
 Unique specimen concepts:
 
 ```{r specimen1}
-spec <- tally_concept(ctn, schema, "specimen", "specimen_concept_id")
-
-spec %>%
-  arrange(desc(n)) %>%
-  gt() %>%
-  tab_options(table.width = pct(100))
+if (!("specimen" %in% zero_vals)) {
+  spec <- tally_concept(ctn, schema, "specimen", "specimen_concept_id")
+  
+  spec %>%
+    arrange(desc(n)) %>%
+    gt() %>%
+    tab_options(table.width = pct(100))
+}
 ```
 
 Unique anatamical sites:
 
 ```{r specimen2}
-spec_as <- tally_concept(ctn, schema, "specimen", "anatomic_site_concept_id")
-
-spec_as %>%
-  arrange(desc(n)) %>%
-  gt() %>%
-  tab_options(table.width = pct(100))
+if (!("specimen" %in% zero_vals)) {
+  spec_as <- tally_concept(ctn, schema, "specimen", "anatomic_site_concept_id")
+  
+  spec_as %>%
+    arrange(desc(n)) %>%
+    gt() %>%
+    tab_options(table.width = pct(100))
+}
 ```
 
 
@@ -728,13 +749,15 @@ spec_as %>%
 The top 50 most common drugs given:
 
 ```{r drugs}
-drug <- tally_concept(ctn, schema, "drug_exposure", "drug_concept_id")
-
-drug %>%
-  arrange(desc(n)) %>%
-  slice(1:50) %>%
-  gt() %>%
-  tab_options(table.width = pct(100))
+if (!("drug_exposure" %in% zero_vals)) {
+  drug <- tally_concept(ctn, schema, "drug_exposure", "drug_concept_id")
+  
+  drug %>%
+    arrange(desc(n)) %>%
+    slice(1:50) %>%
+    gt() %>%
+    tab_options(table.width = pct(100))
+}
 ```
 
 
@@ -743,35 +766,41 @@ drug %>%
 The top 20 most common conditions:
 
 ```{r condition-occurrence1}
-cond <- tally_concept(ctn, schema, "condition_occurrence", "condition_concept_id")
-
-cond %>%
-  arrange(desc(n)) %>%
-  slice(1:20) %>%
-  gt() %>%
-  tab_options(table.width = pct(100))
+if (!("condition_occurrence" %in% zero_vals)) {
+  cond <- tally_concept(ctn, schema, "condition_occurrence", "condition_concept_id")
+  
+  cond %>%
+    arrange(desc(n)) %>%
+    slice(1:20) %>%
+    gt() %>%
+    tab_options(table.width = pct(100))
+}
 ```
 
 Condition types seen:
 
 ```{r condition-occurrence2}
-cond_t <- tally_concept(ctn, schema, "condition_occurrence", "condition_type_concept_id")
-
-cond_t %>%
-  arrange(desc(n)) %>%
-  gt() %>%
-  tab_options(table.width = pct(100))
+if (!("condition_occurrence" %in% zero_vals)) {
+  cond_t <- tally_concept(ctn, schema, "condition_occurrence", "condition_type_concept_id")
+  
+  cond_t %>%
+    arrange(desc(n)) %>%
+    gt() %>%
+    tab_options(table.width = pct(100))
+}
 ```
 
 Condition status seen:
 
 ```{r condition-occurrence3}
-cond_s <- tally_concept(ctn, schema, "condition_occurrence", "condition_status_concept_id")
-
-cond_s %>%
-  arrange(desc(n)) %>%
-  gt() %>%
-  tab_options(table.width = pct(100))
+if (!("condition_occurrence" %in% zero_vals)) {
+  cond_s <- tally_concept(ctn, schema, "condition_occurrence", "condition_status_concept_id")
+  
+  cond_s %>%
+    arrange(desc(n)) %>%
+    gt() %>%
+    tab_options(table.width = pct(100))
+}
 ```
 
 
@@ -780,12 +809,14 @@ cond_s %>%
 All procedures seen:
 
 ```{r procedure-table}
-proc <- tally_concept(ctn, schema, "procedure_occurrence", "procedure_concept_id")
-
-proc %>%
-  arrange(desc(n)) %>%
-  gt() %>%
-  tab_options(table.width = pct(100))
+if (!("procedure_occurrence" %in% zero_vals)) {
+  proc <- tally_concept(ctn, schema, "procedure_occurrence", "procedure_concept_id")
+  
+  proc %>%
+    arrange(desc(n)) %>%
+    gt() %>%
+    tab_options(table.width = pct(100))
+}
 ```
 
 
@@ -797,12 +828,14 @@ proc %>%
   - how many terminal branch (metadata) tags we have
 
 ```{r fr-table1}
-fr_types <- tally_concept(ctn, schema, "fact_relationship", "relationship_concept_id")
-
-fr_types %>%
-  arrange(desc(n)) %>%
-  gt() %>%
-  tab_options(table.width = pct(100))
+if (!("fact_relationship" %in% zero_vals)) {
+  fr_types <- tally_concept(ctn, schema, "fact_relationship", "relationship_concept_id")
+  
+  fr_types %>%
+    arrange(desc(n)) %>%
+    gt() %>%
+    tab_options(table.width = pct(100))
+}
 ```
 
 

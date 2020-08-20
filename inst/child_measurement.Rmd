@@ -1,4 +1,4 @@
-```{r}
+```{r titles-meas-{{x}}}
 current_concept <- {{x}}
 current_name <- meas_dq$concept_name[meas_dq$concept_id == current_concept]
 target_col <- meas_dq$target_column[meas_dq$concept_id == current_concept]
@@ -11,7 +11,7 @@ if (nchar(curr_title) >= 30) {
 
 ### `r paste0(current_concept, ": ", curr_title)`
 
-```{r}
+```{r setup-meas-{{x}}}
 ## Collect Just the working data we need
 working <- tbl(ctn, in_schema(schema, "measurement")) %>%
   filter(measurement_concept_id %in% !! current_concept) %>%
@@ -38,7 +38,7 @@ Unit in use is/are: `r label_units`.
 
 Operators in use is/are: `r operator_units`.
 
-```{r}
+```{r tbls-meas-{{x}}}
 working <- left_join(
   working %>%
     select(
@@ -50,9 +50,7 @@ working <- left_join(
   st[["visit_occurrence"]] %>%
       select(visit_occurrence_id, visit_start_datetime, visit_end_datetime),
   by = "visit_occurrence_id")
-```
 
-```{r}
 # Boundaries
 boundaries <- working %>%
   summarise(
@@ -96,7 +94,7 @@ bind_rows(boundaries, dup, miss) %>%
 ```
 
 
-```{r}
+```{r plots-meas-{{x}}}
 # value distribution
 if (target_col == "value_as_number") {
   val_dist <- working %>%
