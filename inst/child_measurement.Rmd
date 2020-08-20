@@ -42,6 +42,7 @@ Operators in use is/are: `r operator_units`.
 working <- left_join(
   working %>%
     select(
+      person_id,
       measurement_id,
       measurement_datetime,
       value_as_number,
