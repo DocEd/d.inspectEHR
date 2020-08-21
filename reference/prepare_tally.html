@@ -112,7 +112,13 @@
     <p>Prepare Tally of Clinical Tables</p>
     </div>
 
-    <pre class="usage"><span class='fu'>prepare_tally</span>(<span class='no'>ctn</span>, <span class='no'>schema</span>)</pre>
+    <pre class="usage"><span class='fu'>prepare_tally</span>(
+  <span class='no'>ctn</span>,
+  <span class='no'>schema</span>,
+  <span class='kw'>tbl_names</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"person"</span>, <span class='st'>"specimen"</span>, <span class='st'>"death"</span>, <span class='st'>"visit_occurrence"</span>, <span class='st'>"visit_detail"</span>,
+    <span class='st'>"procedure_occurrence"</span>, <span class='st'>"drug_exposure"</span>, <span class='st'>"device_exposure"</span>, <span class='st'>"condition_occurrence"</span>,
+    <span class='st'>"measurement"</span>, <span class='st'>"observation"</span>)
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
