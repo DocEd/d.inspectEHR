@@ -110,53 +110,86 @@ bind_rows(boundaries, dup, miss) %>%
 if (target_col == "value_as_number") {
   val_dist <- working %>%
     select(value_as_number) %>%
-    ggplot(aes(x = value_as_number)) +
-    geom_density() +
-    theme_classic() +
-    labs(x = label_units)
+    filter(!is.na(value_as_number))
+  
+  if (nrow(val_dist) == 0) {
+    val_dist <- "bad"
+  } else {
+    val_dist <- val_dist %>%
+      ggplot(aes(x = value_as_number)) +
+      geom_density() +
+      theme_classic() +
+      labs(x = label_units)
+  }
 } else {
   opt <- dq_ans[dq_ans$concept_id == current_concept, c("option_concept_id", "option_name")]
   
   val_dist <- working %>%
     select(value_as_concept_id) %>%
-    group_by(value_as_concept_id) %>%
-    tally() %>%
-    mutate(value_as_concept_id = factor(
-      value_as_concept_id,
-      levels = opt$option_concept_id,
-      labels = opt$option_name
-    )) %>%
-    ggplot(aes(
-      x = value_as_concept_id)) +
-    geom_point(aes(y = n)) +
-    geom_segment(aes(
-      y = 0,
-      yend = n,
-      xend = as.factor(value_as_concept_id))) +
-    theme_classic() +
-    labs(y = "number of respones", x = "categories") +
-    theme(axis.title.y = element_blank()) +
-    coord_flip()
+    filter(!is.na(value_as_concept_id))
+  
+  if (nrow(val_dist) == 0) {
+    val_dist <- "bad"
+  } else {
+    val_dist <- val_dist %>%
+      group_by(value_as_concept_id) %>%
+      tally() %>%
+      mutate(value_as_concept_id = factor(
+        value_as_concept_id,
+        levels = opt$option_concept_id,
+        labels = opt$option_name
+      )) %>%
+      ggplot(aes(
+        x = value_as_concept_id)) +
+      geom_point(aes(y = n)) +
+      geom_segment(aes(
+        y = 0,
+        yend = n,
+        xend = as.factor(value_as_concept_id))) +
+      theme_classic() +
+      labs(y = "number of respones", x = "categories") +
+      theme(axis.title.y = element_blank()) +
+      coord_flip()
+  }
 }
 
 # timing distribution
 timing_dist <- working %>%
   select(measurement_datetime) %>%
-  mutate(measurement_datetime = hms::as_hms(measurement_datetime)) %>%
-  ggplot(aes(x = measurement_datetime)) +
-  geom_density() +
-  theme_classic() +
-  labs(x = "time of sample")
+  filter(!is.na(measurement_datetime))
+
+if (nrow(timing_dist) == 0) {
+  timing_dist <- "bad"
+} else {
+  timing_dist <- timing_dist %>%
+    mutate(measurement_datetime = hms::as_hms(measurement_datetime)) %>%
+    ggplot(aes(x = measurement_datetime)) +
+    geom_density() +
+    theme_classic() +
+    labs(x = "time of sample")
+}
+
 
 # samples over time
 sample_timing <- working %>%
   select(measurement_date) %>%
-  group_by(measurement_date) %>%
-  tally() %>%
-  ggplot(aes(x = measurement_date, y = n)) +
-  geom_path() +
-  theme_classic() +
-  labs(x = "measurement date", y = "daily samples")
+  filter(!is.na(measurement_date))
 
-(val_dist | timing_dist) / sample_timing
+if (nrow(sample_timing) == 0) {
+  sample_timing <- "bad"
+} else {
+  sample_timing <- sample_timing %>%
+    group_by(measurement_date) %>%
+    tally() %>%
+    ggplot(aes(x = measurement_date, y = n)) +
+    geom_path() +
+    theme_classic() +
+    labs(x = "measurement date", y = "daily samples")
+}
+
+cant_plot <- any(c(class(sample_timing), class(timing_dist), class(val_dist)) %in% "character")
+
+if (!cant_plot) {
+  (val_dist | timing_dist) / sample_timing
+}
 ```

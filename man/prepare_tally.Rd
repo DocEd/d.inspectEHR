@@ -4,7 +4,13 @@
 \alias{prepare_tally}
 \title{Prepare Tally of Clinical Tables}
 \usage{
-prepare_tally(ctn, schema)
+prepare_tally(
+  ctn,
+  schema,
+  tbl_names = c("person", "specimen", "death", "visit_occurrence", "visit_detail",
+    "procedure_occurrence", "drug_exposure", "device_exposure", "condition_occurrence",
+    "measurement", "observation")
+)
 }
 \arguments{
 \item{ctn}{database connection}
