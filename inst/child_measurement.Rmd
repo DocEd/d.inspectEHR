@@ -19,24 +19,33 @@ working <- tbl(ctn, in_schema(schema, "measurement")) %>%
   mutate(across(where(is.integer64), as.integer)) %>%
   mutate(across(c(contains("date"), -contains("datetime")), as.Date))
 
-working_units <- unique(working$unit_concept_id)
-working_operator <- unique(working$operator_concept_id)
+working_units <- as.integer(na.omit(unique(working$unit_concept_id)))
+working_operator <- as.integer(na.omit(unique(working$operator_concept_id)))
 
-working_units_dict <- mini_dict(ctn, schema, na.omit(working_units))
-working_operator_dict <- mini_dict(ctn, schema, na.omit(working_operator))
+if (length(working_units) > 0) {
+  working_units_dict <- mini_dict(ctn, schema, working_units)
+  label_units <- paste0(working_units_dict$concept_name, collapse = ", ")
+} else {
+  label_units <- "None in use!"
+}
 
-single_units <- length(working_units) == 1
-label_units <- paste0(working_units_dict$concept_name, collapse = ", ")
-operator_units <- paste0(working_operator_dict$concept_name, collapse = ", ")
+if (length(working_operator) > 0) {
+  working_operator_dict <- mini_dict(ctn, schema, working_operator)
+  operator_units <- paste0(working_operator_dict$concept_name, collapse = ", ")
+} else {
+  operator_units <- "None in use!"
+}
 
 measure_n <- nrow(working)
 ```
 
-Concept units are of one type only: `r single_units`.
+The number of units in use: `r length(working_units)`.
 
-Unit in use is/are: `r label_units`.
+Units in use: `r label_units`.
 
-Operators in use is/are: `r operator_units`.
+The number of operators in use: `r length(operator_units)`.
+
+Operators in use: `r operator_units`.
 
 ```{r tbls-meas-{{x}}}
 working <- left_join(
